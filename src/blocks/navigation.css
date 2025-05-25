@@ -1,0 +1,41 @@
+:root {
+  --icon-color: #fdfbfc;
+  --active-color: #f44c1e;
+  --standart-color: #505050;
+  --background-color: #000;
+}
+
+.nav_bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 90dvw;
+    height: 85px;
+    border-radius: 21px;
+    padding: 10px 5dvw;
+    box-sizing: border-box;
+
+    background-color: var(--standart-color);
+}
+
+.navigate {
+    width: 45px;
+    height: 45px;
+}
+
+.navigate.active {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    padding: 7.5px;
+    box-sizing: border-box;
+
+    background-color: var(--active-color);
+}
+
+.navigate_icon {
+    width: 45px;
+    height: 45px;
+}
