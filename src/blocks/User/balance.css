@@ -1,0 +1,48 @@
+:root {
+  --main-text-color: #fdfbfc;
+  --secondary-text-color: #958683;
+  --standart-color: #505050;
+  --secondary-color: #090909;
+}
+
+.balances {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 60px;
+    padding: 10px;
+    box-sizing: border-box;
+    
+    border: 2px solid var(--standart-color);
+    border-radius: 30px;
+
+    background-color: var(--secondary-color);
+}
+
+.dividing-line {
+    height: 35px;
+    width: 2px;
+    background-color: var(--standart-color);
+}
+
+.balance {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 30dvw;
+}
+
+.balance_icon {
+    width: 37px;
+    height: 37px;
+
+    margin-right: 1dvw;
+}
+
+.balance_value {
+    color: var(--main-text-color);
+}
