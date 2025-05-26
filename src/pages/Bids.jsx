@@ -2,7 +2,9 @@ import React from 'react'
 
 const Bids = () => {
   return (
-    <div>Bids</div>
+    <section className='section bids_section'>
+      
+    </section>
   )
 }
 

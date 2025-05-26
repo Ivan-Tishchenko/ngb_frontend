@@ -39,7 +39,7 @@
     border-radius: 100%;
     box-sizing: border-box;
 
-    transform: translateY(-43px);
+    transform: translateY(-33px);
 
     z-index: 1;
 }
@@ -61,6 +61,21 @@
     filter: blur(1px);
 }
 
+.navigate.active::after {
+    content: " ";
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    border-radius: 100%;
+    background-color: var(--active-color);
+    filter: blur(1px);
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
 .navigate_icon {
     position: relative;
     left: 50%;
@@ -68,10 +83,7 @@
     transform: translate(-50%, -50%);
 
     width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
+    height: 100%;
 
-.navigate.active .navigate_icon {
-    border: 5px solid var(--active-color);
+    z-index: 2;
 }
