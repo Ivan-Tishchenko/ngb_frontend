@@ -20,9 +20,9 @@ const Bids = () => {
 
         <div className='bids_value'>
 
-          <button className='bid_value 25%'>25%</button>
-          <button className='bid_value 50%'>50%</button>
-          <button className='bid_value 100%'>100%</button>
+          <button className='bid_count 25%'>25%</button>
+          <button className='bid_count 50%'>50%</button>
+          <button className='bid_count 100%'>100%</button>
 
           <div className='bid_value_input'>
             <input type='number' className='bid_value input_value'/>

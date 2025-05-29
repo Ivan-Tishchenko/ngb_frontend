@@ -6,6 +6,11 @@
   --bid-up: #34c85a;
   --bid-down: #ff3b2f;
   --shadow: #9B3C1F;
+  --active-color: #f44c1e;
+}
+
+.bids_section {
+    padding-top: 50px;
 }
 
 .price_block {
@@ -63,4 +68,43 @@
 
 .bid.bid_down {
     background-color: var(--bid-down);
+}
+
+.bids_value {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 95dvw;
+    box-sizing: border-box;
+    padding: 0 5dvw;
+
+    margin-top: 20px;
+}
+
+.bid_count {
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--main-text-color);
+    background-color: var(--standart-color);
+    color: var(--main-text-color);
+}
+
+.bid_count:hover, .bid_count:active {
+    background-color: var(--active-color);
+}
+
+.bid_value_input {
+    box-sizing: border-box;
+    width: 50dvw;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: var(--standart-color);
+    border-radius:  0 15px 15px 0;
+    padding-right: 10px;
 }
