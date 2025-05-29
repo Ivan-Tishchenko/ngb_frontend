@@ -33,15 +33,15 @@ const Nav = () => {
                     <img src={home_icon} alt='icon' className='icon navigate_icon' />
                 </NavLink>
                 
-                <NavLink to="/mine" className='navigate ' >
+                <NavLink to="/reff" className='navigate ' >
                     <img src={comunity_icon} alt='icon' className='icon navigate_icon' />
                 </NavLink>
                 
-                <NavLink to="/quests" className='navigate ' >
+                <NavLink to="/mine" className='navigate ' >
                     <img src={mining_icon} alt='icon' className='icon navigate_icon' />
                 </NavLink>
                 
-                <NavLink to="/reff" className='navigate ' >
+                <NavLink to="/quests" className='navigate ' >
                     <img src={task_icon} alt='icon' className='icon navigate_icon' />
                 </NavLink>
             </div>
