@@ -5,24 +5,37 @@
   --background-color: #000;
 }
 
-.nav_bar {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translate(-50%);
-
+.mask_nav_background {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
-    width: 90dvw;
-    height: 85px;
-    border-radius: 21px;
+    box-sizing: border-box;
+    width: 95dvw;
+    height: 82px;
+    border-radius: 25px;
     padding: 10px 5dvw;
     box-sizing: border-box;
 
-    background-color: var(--standart-color);
+    background-color: color-mix(in srgb, var(--standart-color) 39%, transparent);
+    transform: translateY(12px);
+}
+
+.nav_bar {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    height: 94px;    
+
+    -webkit-mask-image: url('../img/navbar_mask.svg');
+    mask-image: url('../img/navbar_mask.svg');
+    mask-repeat: no-repeat;
+    mask-position: var(--hole-x) 0;
+    mask-size:auto;
+    max-width: 2730px;
 }
 
 .navigate {
@@ -30,49 +43,17 @@
     width: 60px;
     height: 60px;
     border-radius: 100%;
-    background-color: var(--standart-color);
 }
 
 .navigate.active {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 100%;
     box-sizing: border-box;
-
-    transform: translateY(-33px);
-
-    z-index: 1;
-}
-
-.navigate.active::before {
-    content: " ";
-    width: 70px;
-    height: 70px;
-    box-sizing: border-box;
-    background-color: var(--background-color);
-    border-radius: 0 0 50% 50%;
-    
-
-    position: absolute;
-    left: 50%;
-    top:50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    filter: blur(1px);
-}
-
-.navigate.active::after {
-    content: " ";
-    width: 60px;
-    height: 60px;
-    box-sizing: border-box;
-    border-radius: 100%;
     background-color: var(--active-color);
-    filter: blur(1px);
-    position: absolute;
-    left: 50%;
-    top:50%;
-    transform: translate(-50%, -50%);
+
+    transform: translateY(-19.5px);
+
     z-index: 1;
 }
 
@@ -81,9 +62,6 @@
     left: 50%;
     top:50%;
     transform: translate(-50%, -50%);
-
-    width: 45px;
-    height: 100%;
 
     z-index: 2;
 }
