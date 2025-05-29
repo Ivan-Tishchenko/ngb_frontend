@@ -1,0 +1,66 @@
+:root {
+  --main-text-color: #fdfbfc;
+  --secondary-text-color: #958683;
+  --standart-color: #505050;
+  --secondary-color: #090909;
+  --bid-up: #34c85a;
+  --bid-down: #ff3b2f;
+  --shadow: #9B3C1F;
+}
+
+.price_block {
+    width: 95dvw;
+    height: 25dvh;
+    border: 2px solid var(--standart-color);
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content:center;
+
+    background-color: color-mix(in srgb, var(--standart-color) 5%, transparent);
+    filter: drop-shadow(0 20px 15px color-mix(in srgb, var(--shadow) 27%, transparent));
+}
+
+.info {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.bids_open {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 95dvw;
+    box-sizing: border-box;
+    padding: 0 8dvw;
+
+    margin-top: 35px;
+}
+
+.bid {
+    width: 38dvw;
+    height: 68px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: none;
+
+    color: var(--main-text-color);
+}
+
+.bid_symbol {
+    display: inline-block;
+    transform: rotate(90deg);
+}
+
+.bid.bid_up {
+    background-color: var(--bid-up);
+}
+
+.bid.bid_down {
+    background-color: var(--bid-down);
+}
