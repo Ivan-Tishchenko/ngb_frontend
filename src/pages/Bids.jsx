@@ -20,12 +20,14 @@ const Bids = () => {
 
         <div className='bids_value'>
 
-          <button className='bid_count 25%'>25%</button>
-          <button className='bid_count 50%'>50%</button>
-          <button className='bid_count 100%'>100%</button>
+          <div className='bids_percent_buttons' >
+            <button className='bid_count 25%'>25%</button>
+            <button className='bid_count 50%'>50%</button>
+            <button className='bid_count 100%'>100%</button>
+          </div>
 
           <div className='bid_value_input'>
-            <input type='number' className='bid_value input_value'/>
+            <input type='number' className='bid_value input_value' name='bid_value' id='bid_value' />
             <img src={TON} alt="ton icon" />
           </div>
 
