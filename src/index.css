@@ -9,6 +9,7 @@ body {
   color: aqua;
   overflow: hidden;
   padding: 15px 2.5dvw;
+  height: 100dvh;
 }
 
 /* background animated particles
