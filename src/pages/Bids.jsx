@@ -1,14 +1,43 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import TON from "../img/TON.png";
 import "./bids.css";
 
 const Bids = () => {
+  const socketRef = useRef(null);
+  const [price, setPrice] = useState(null);
+
+  useEffect(() => {
+    // WebSocket (Binance)
+    socketRef.current = new WebSocket('wss://stream.binance.com:9443/ws/tonusdt@trade');
+
+    socketRef.current.onopen = () => {
+      console.log('WebSocket connected');
+    };
+
+    socketRef.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setPrice(data.p); 
+    };
+
+    socketRef.current.onerror = (error) => {
+      console.error('error WebSocket:', error);
+    };
+
+    socketRef.current.onclose = () => {
+      console.log('WebSocket disconnected');
+    };
+
+    return () => {
+      socketRef.current.close();
+    };
+  }, []);
+
   return (
     <section className='section bids_section'>
       <div className='price_block'>
         <button className='info' >?</button>
         <p className='text price_text'>toncoin price</p>
-        <h1 className='price_text text price'>20,69$</h1>
+        <h1 className='price_text text price'>{price ? Number(price).toFixed(4) : "Loading..."}$</h1>
       </div>
 
       <div className='bids_block'>
