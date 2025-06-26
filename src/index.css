@@ -8,7 +8,7 @@ body {
   background-color: #000;
   color: aqua;
   overflow: hidden;
-  padding: 15px 2.5dvw;
+  
   height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
 }
@@ -16,6 +16,8 @@ body {
 #root {
   height: 100%;
   position: relative;
+  padding: 15px 2.5dvw;
+  box-sizing: border-box;
 }
 
 /* background animated particles
