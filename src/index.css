@@ -9,8 +9,12 @@ body {
   color: aqua;
   overflow: hidden;
   padding: 15px 2.5dvw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
+}
+
+.root {
+  height: 100%;
 }
 
 /* background animated particles
