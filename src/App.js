@@ -23,12 +23,12 @@ function App() {
     {/* <TonConnectUIProvider manifestUrl={`https://${APP}/tonconnect-manifest.json`}> */}
       <User />
 
-      <Routes>
-        <Route path="/bids" element={<Bids /> }/>
-        <Route path="/mine" element={<Mine /> }/>
-        <Route path="/quests" element={<Quests /> }/>
-        <Route path="/reff" element={<Refferals /> }/>
-      </Routes>
+        <Routes>
+          <Route path="/bids" element={<Bids /> }/>
+          <Route path="/mine" element={<Mine /> }/>
+          <Route path="/quests" element={<Quests /> }/>
+          <Route path="/reff" element={<Refferals /> }/>
+        </Routes>
       
       <Nav />
     {/* </TonConnectUIProvider> */}

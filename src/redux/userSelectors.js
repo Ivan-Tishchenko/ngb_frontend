@@ -1,0 +1,12 @@
+export const selectUserName = (state) => state.user.userName;
+export const selectUserLink = (state)=> state.user.userLink;
+export const selectUserId = (state) => state.user.userId;
+export const selectUserRang = (state) => state.user.rang;
+export const selectWallet = (state) => state.user.wallet;
+export const selectXpPoints = (state) => state.user.xpPoints;
+export const selectRefferalFor = (state) => state.user.refferalFor;
+export const selectBallance = (state) => state.user.ballance;
+export const selectTickets = (state) => state.user.tickets;
+export const selectBid = (state) => state.user.bid;
+export const selectSignedAt = (state) => state.user.signedAt;
+export const selectReffCode = (state) => state.user.reffCode;
