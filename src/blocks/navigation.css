@@ -24,7 +24,7 @@
 
 .nav_bar {
     position: fixed;
-    bottom: 10px;
+    top: calc(100dvh - 105px);
     left: 50%;
     transform: translateX(-50%);
 
