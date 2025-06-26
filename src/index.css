@@ -13,8 +13,9 @@ body {
   overflow: hidden;
 }
 
-.root {
+#root {
   height: 100%;
+  position: relative;
 }
 
 /* background animated particles
