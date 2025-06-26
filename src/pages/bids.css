@@ -40,6 +40,7 @@
     position: absolute;
     right: 10px;
     top: 10px;
+    border-radius: 50%;
 }
 
 .bids_open {
@@ -174,4 +175,34 @@
     justify-content: space-between;
     width: 72dvw;
     
+}
+
+.info_modal_background {
+    width: 100dvw;
+    height: 100dvh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(18, 18, 18, 0.636);
+    z-index: 10;
+}
+
+.info_modal {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80dvw;
+    height: 60dvh;
+
+    z-index: 20;
+    background-color: #000000;
+    border: solid 1px var(--standart-color);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

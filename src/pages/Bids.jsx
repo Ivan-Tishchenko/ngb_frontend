@@ -6,6 +6,8 @@ const Bids = () => {
   const socketRef = useRef(null);
   const [price, setPrice] = useState(null);
 
+  const [info, setInfo] = useState(false);
+
   useEffect(() => {
     // WebSocket (Binance)
     socketRef.current = new WebSocket('wss://stream.binance.com:9443/ws/tonusdt@trade');
@@ -31,11 +33,25 @@ const Bids = () => {
       socketRef.current.close();
     };
   }, []);
-
+  
   return (
     <section className='section bids_section'>
+
+      {info &&
+        <div className='info_modal_background' onClick={(event)=>{
+          if(event.target === event.currentTarget) {
+            setInfo(false)
+          }
+          }}>
+          <div className='info_modal'>
+            <h2>how its work?</h2>
+            <p>text ...</p>
+            <button onClick={()=> setInfo(false)}>OK</button> 
+          </div>
+        </div>}
+
       <div className='price_block'>
-        <button className='info' >?</button>
+        <button className='info' onClick={()=>setInfo(true)}>?</button>
         <p className='text price_text'>toncoin price</p>
         <h1 className='price_text text price'>{price ? Number(price).toFixed(4) : "Loading..."}$</h1>
       </div>
