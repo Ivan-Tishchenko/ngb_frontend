@@ -1,0 +1,23 @@
+:root {
+  --main-text-color: #fdfbfc;
+  --secondary-text-color: #958683;
+  --standart-color: #505050;
+  --secondary-color: #090909;
+}
+
+.game_button {
+    margin-top: 5px;
+    width: 90px;
+    height: 35px;
+    border: solid 1px var(--standart-color);
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game_icon {
+    width: 30.5px;
+}
