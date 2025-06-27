@@ -7,9 +7,10 @@ import { Route, Routes } from 'react-router-dom';
 import Mine from 'pages/Mine';
 import Quests from 'pages/Quests';
 import Refferals from 'pages/Refferals';
-// import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
-// const APP = "10.255.18.99:3000";
+const APP = "https://ngbfrontendtest.netlify.app/";
+
 function App() {
 
   useEffect(() => {
@@ -28,12 +29,13 @@ function App() {
     if (window.Telegram?.WebApp) {
         window.Telegram.WebApp.expand();
     }
+    
   }, []);
 
   return (
     <>
-    {/* <TonConnectUIProvider manifestUrl={`https://${APP}/tonconnect-manifest.json`}> */}
-      <User />
+      <TonConnectUIProvider manifestUrl={`https://${APP}/tonconnect-manifest.json`}>
+        <User />
 
         <Routes>
           <Route path="/bids" element={<Bids /> }/>
@@ -42,8 +44,8 @@ function App() {
           <Route path="/reff" element={<Refferals /> }/>
         </Routes>
       
-      <Nav />
-    {/* </TonConnectUIProvider> */}
+        <Nav />
+      </TonConnectUIProvider>
     </>
   );
 }

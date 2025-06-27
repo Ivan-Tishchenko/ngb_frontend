@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    userName:"vati",
+    userLink: "@vati5",
+    userId: "7651520",
     rang: 1,
+    wallet: "EQ...Baxka",
     xpPoints: 132,
     refferalFor: "F23rfW4fvc",
     ballance: 100,
     tickets: 161,
     bid: {
         type: "+",
+        bidId: "CD4wfvd",
         value: 25,
-        time: Date.now(),
+        startTime: Date.now(),
         startPrice: 2.81,
+        endTime: null,
     },
     signedAt: Date.now(),
     reffCode: "F23rfW4fvc",

@@ -1,5 +1,5 @@
 {
-    "url": "http://10.255.18.99:3000",                        
+    "url": "https://ngbfrontendtest.netlify.app/",                        
     "name": "NGB test",                     
     "iconUrl": "https://docs.ton.org/ru/img/ton_logo_light_background.svg",              
     "termsOfUseUrl": "https://terms-of-use",    

@@ -5,18 +5,23 @@
   --secondary-color: #090909;
 }
 
-.game_button {
-    width: 60px;
+
+.ton_connect {
+    width: 205px;
     height: 35px;
-    border: solid 1px var(--standart-color);
-    border-radius: 20px;
-    background-color: var(--secondary-color);
+    margin-right: 15px;
     box-sizing: border-box;
+    border: solid 1px var(--standart-color);
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    color: var(--main-text-color);
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+
 }
 
-.game_icon {
-    width: 30.5px;
+.ton_connect img {
+    margin-right: 5px;
 }
