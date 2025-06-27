@@ -1,0 +1,74 @@
+{
+    "users": [
+        {
+    "userName":"vati",
+    "userLink": "@vati5",
+    "userId": "7651520",
+    "rang": 1,
+    "wallet": "EQ...Baxka",
+    "xpPoints": 132,
+    "refferalFor": "F23rfW4fvc",
+    "ballance": 100,
+    "tickets": 161,
+    "bid": {
+        "type": "+",
+        "bidId": "CD4wfvd",
+        "value": 25,
+        "startTime": 1751023259056,
+        "startPrice": 2.81,
+        "endTime": null
+    },
+    "signedAt": 1751023259056,
+    "reffCode": "F23rfW4fvc"
+}, 
+{
+    "userName":"glam",
+    "userLink": "@132",
+    "userId": "76515204321",
+    "rang": 3,
+    "wallet": "EQ...DfsDV",
+    "xpPoints": 132,
+    "refferalFor": "F23rfW4fvc",
+    "ballance": 100,
+    "tickets": 161,
+    "bid": {},
+    "signedAt": 1751023259000,
+    "reffCode": "REbv12rf"
+}, 
+{
+    "userName":"mfesh",
+    "userLink": "@mfesh132",
+    "userId": "7651862",
+    "rang": 1,
+    "wallet": "EQ...Baxka",
+    "xpPoints": 132,
+    "refferalFor": "F23rfW4fvc",
+    "ballance": 100,
+    "tickets": 161,
+    "bid": {
+        "type": "1",
+        "bidId": "q1WS#@21",
+        "value": 5,
+        "startTime": 1751023259056,
+        "startPrice": 2.8100,
+        "endTime": null
+    },
+    "signedAt": 1751021111056,
+    "reffCode": "3sdb3sBVD"
+},
+{
+    "userName":"qwert",
+    "userLink": "@werte",
+    "userId": "76552585",
+    "rang": 32,
+    "wallet": "EQ...FGcsz",
+    "xpPoints": 132,
+    "refferalFor": "3sdb3sBVD",
+    "ballance": 100,
+    "tickets": 161,
+    "bid": {},
+    "signedAt": 1751111259056,
+    "reffCode": "EFGVacas3"
+}
+    ]
+}
