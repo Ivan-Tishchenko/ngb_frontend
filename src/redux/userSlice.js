@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+    avatarURL: "https://cdn4.cdn-telegram.org/file/cbjNUWBQxSPcj3KU9Nv-B-8ai_Q2F5Z4kdJSvaXdoB6HfSdoAnUksAMPwhCLqGv8kNFwbgHqZMEFU-GnZYZp7MUu9JLoVHCMVvj06Z-MjWPN7N4z_rDgeo_8pfmj-vvTsPtqeGRoLE2lGRy46w-aulq5yAZbG1-ZQdInGG0XfMGCotDk4QS4aeS3Eco9UhkDt-d6mw8WgTvH4P8yPi2lbiAdpabybGJaa1F1yIwQjZZ_ZoomxGTJqzFzTmwi6r6uS2k9NaGcGRtNf8hzA43F7qb5lC_Q4d6fskbpMhD0Dy-4PzGHMmFmyzJfxfUXJvrqn-cpKAi4v-JWBOWSP0h_KQ.jpg",
     userName:"vati",
     userLink: "@vati5",
     userId: "7651520",
