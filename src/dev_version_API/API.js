@@ -8,7 +8,7 @@ export const getUser = async (userName) => {
 export const getRefferals = async (refCode) => {
     const response = await fetch('/data.json');
     const data = await response.json();
-    const refferals = data.users.filter(user=> user.reffFor === refCode);
+    const refferals = data.users.filter(user=> user.refferalFor === refCode);
     return refferals;
 }
 
