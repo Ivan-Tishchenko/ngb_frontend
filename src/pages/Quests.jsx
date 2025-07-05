@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './quests.css';
 import XPicon from '../img/XP.png';
 import GEMicon from '../img/DIAMOND.png';
 
 const Quests = () => {
   const [active, setActive] = useState("daily"); /* "daily" or "standart" */
-  const [quests, setQuests]= useState([{questId: 1, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
+  const [quests, setQuests]= useState([]);
+  const [modal, setModal] = useState(false);
+  const [activeQuest, setActiveQuest] = useState({})
+
+  useEffect(()=>{
+    setQuests([{questId: 1, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
                                        {questId: 2, text: "ВСТУПИ В КАНАЛ 'QWERTZUIOP'", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
                                        {questId: 3, text: "Пригласи друзей", isDone: true, isClaimed: true, rewardXP: 200, rewardGEM: 0, executionsCount: "infinity"},
                                        {questId: 4, text: "Пригласи друзей", isDone: true, isClaimed: false, rewardXP: 25, rewardGEM: 0, executionsCount: "infinity"},
@@ -26,8 +31,7 @@ const Quests = () => {
                                        {questId: 19, text: "Пригласи друзей", isDone: true, isClaimed: true, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
                                        {questId: 20, text: "Пригласи друзей", isDone: true, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"}
                                       ]);
-  const [modal, setModal] = useState(false);
-  const [activeQuest, setActiveQuest] = useState({})
+  }, [])
 
   return (<>
     {modal && <div className='modal_background' onClick={(event)=>{
