@@ -1,0 +1,22 @@
+.soon_block {
+    margin-top: 50%;
+    width: 95dvw;
+    height: 25dvh;
+    min-height: 150px;
+    border: 2px solid var(--standart-color);
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content:center;
+
+    background-color: color-mix(in srgb, var(--standart-color) 30%, transparent);
+
+    box-shadow: 0 10px 20px color-mix(in srgb, var(--active-color) 30%, transparent);
+
+    overflow: visible;
+
+    font-size: clamp(25px, 10vw, 45px);
+}

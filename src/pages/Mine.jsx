@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './mine.css';
 
 const Mine = () => {
   return (
-    <div>Mine</div>
+    <div className='soon_block'>SOON!</div>
   )
 }
 
