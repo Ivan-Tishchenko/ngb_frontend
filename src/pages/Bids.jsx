@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import TON from "../img/TON.png";
+import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
 
 const Bids = () => {
@@ -73,7 +73,7 @@ const Bids = () => {
 
           <div className='bid_value_input'>
             <input type='number' className='bid_value input_value' name='bid_value' id='bid_value' />
-            <img src={TON} alt="ton icon" />
+            <img src={GEMicon} alt="ton icon" />
           </div>
 
         </div>

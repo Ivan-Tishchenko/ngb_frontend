@@ -1,7 +1,7 @@
 import React from 'react';
 import TICKET_icon from '../../img/TICKET.png';
 import XP_icon from '../../img/XP.png';
-import TON_icon from '../../img/TON.png';
+import GEM_icon from '../../img/DIAMOND.png';
 import './balance.css';
 import { useSelector } from 'react-redux';
 import { selectBallance, selectTickets, selectXpPoints } from '../../redux/userSelectors';
@@ -20,8 +20,8 @@ const Balance = () => {
 
       <div className='dividing-line'></div>
       
-      <div className='ton balance'>
-        <img src={TON_icon} alt="icon of this type balance" className='icon balance_icon' />
+      <div className='gem balance'>
+        <img src={GEM_icon} alt="icon of this type balance" className='icon balance_icon' />
         <p className='balance_value'>{balance}</p>
       </div>
       
