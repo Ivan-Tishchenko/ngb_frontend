@@ -1,0 +1,148 @@
+.quests_block {
+margin-top: 25px;
+
+    width: 95dvw;
+    min-height: 150px;
+    max-height: calc(100dvh - 25px - 15px - 35px - 15px - 60px - 95px - 15px - 20px);
+    border: 2px solid var(--standart-color);
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: start;
+
+    background-color: color-mix(in srgb, var(--standart-color) 30%, transparent);
+
+    box-shadow: 0 10px 20px color-mix(in srgb, var(--active-color) 30%, transparent);
+
+    overflow: visible;
+    overflow-y: scroll;
+    padding-top: 40px;
+}
+
+.quests_type_switcher {
+    position: fixed;
+    top: calc(8px + 25px + 15px + 35px + 15px + 60px);
+
+    width: 85dvw;
+    height: 30px;
+    border-radius: 18px;
+    border: 1px solid var(--standart-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: 0;
+
+    background-color: color-mix(in srgb, var(--standart-color) 30%, transparent);
+}
+
+.quest_type {
+    width: 45%;
+    height: 100%;
+    border-radius: 14px;
+    color: inherit;
+
+    background-color: var(--standart-color);
+    border: none;
+}
+
+.quest_type.active {
+    background-color: var(--secondary-color);
+}
+
+.quests_list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding: 0;
+    gap: 10px;
+}
+
+.quest {
+    display: flex;
+    border: 1px solid var(--standart-color);
+    border-radius: 10px;
+    justify-content: end;
+    padding: 8px 5px;
+    align-items: center;
+    gap: 10px;
+}
+
+.quest_text {
+    margin: 0;
+    align-items: start;
+    width: 100%;
+}
+
+.reward_block {
+    display: flex;
+
+    box-sizing: border-box;
+    height: 30px;
+    border-radius: 10px;
+    padding: 4px 8px;
+    background-color: var(--secondary-color);
+}
+
+.reward_block p {
+    font-size: 14px;
+    margin: 0 0 0 3px;
+}
+
+.claim_reward_button {
+    width: 160px;
+    height: 30px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: inherit;
+    border: none;
+}
+
+.claim_reward_button.done {
+    background-color: var(--standart-color);
+}
+
+.claim_reward_button.claim {
+    background-color: var(--bid-up);
+}
+
+.claim_reward_button.do {
+    background-color: var(--secondary-color);
+}
+
+.modal_background {
+    width: 100dvw;
+    height: 100dvh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(18, 18, 18, 0.636);
+    z-index: 10;
+}
+
+.modal {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80dvw;
+    height: 60dvh;
+
+    z-index: 20;
+    background-color: var(--secondary-color);
+    border: solid 1px var(--standart-color);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+}
