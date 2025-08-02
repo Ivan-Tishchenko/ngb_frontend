@@ -25,7 +25,8 @@ function App() {
       last_name: "ti",
       username: "@vati5",
       is_premiun: false,
-    },},},};;
+    },},},};
+    
 
   useEffect(() => {
     const setAppHeight = () => {
@@ -58,6 +59,7 @@ function App() {
           <Route path="/mine" element={<Mine /> }/>
           <Route path="/quests" element={<Quests /> }/>
           <Route path="/reff" element={<Refferals /> }/>
+          <Route path="/" element={<div>{JSON.stringify(window.Telegram?.WebApp)}</div>} />
         </Routes>
       
         <Nav />
