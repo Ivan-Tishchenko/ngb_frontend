@@ -59,7 +59,11 @@ function App() {
           <Route path="/mine" element={<Mine /> }/>
           <Route path="/quests" element={<Quests /> }/>
           <Route path="/reff" element={<Refferals /> }/>
-          <Route path="/" element={<div>{JSON.stringify(window.Telegram?.WebApp)}</div>} />
+          <Route path="/" element={<>
+          <div>test text </div>
+          <div>{JSON.stringify(window.Telegram?.WebApp)}</div>
+          <div>test text 2</div>
+          </>} />
         </Routes>
       
         <Nav />

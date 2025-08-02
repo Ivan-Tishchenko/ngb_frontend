@@ -43,14 +43,14 @@ export const userSlice = createSlice({
             state.error = null;
         })
         .addCase(setUser.fulfilled, (state, action)=>{
-            const { userId, username, first_name, last_name, rang, wallet, xpPoints, reffCode, ballance, tickets, bid } = action.payload;
+            const { userId, username, first_name, last_name, rang, wallet, xp, reffCode, ballance, tickets, bid } = action.payload;
             state.userName = first_name + last_name;
             state.ballance = ballance;
             state.userId = userId;
             state.userLink = username;
             state.rang = rang;
             state.wallet = wallet;
-            state.xpPoints = xpPoints;
+            state.xpPoints = xp;
             state.reffCode = reffCode;
             state.tickets = tickets;
             state.bid = bid;
