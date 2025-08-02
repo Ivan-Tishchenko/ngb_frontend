@@ -7,12 +7,13 @@ const setUser = createAsyncThunk("user/setUserState", async (userData, {rejectWi
     try {
         console.log("try")
         const checkUser = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user`, {
-            params: {userId: userData.userId},
+            params: {userId: userData.id},
             headers: {
                 // Authorization: `Bearer ${userData.token}`, // если есть токен 
                 "Content-Type": "application/json"
     }});
 
+    console.log(checkUser)
         if(checkUser.data){
             console.log("user was found")
             return checkUser.data;
