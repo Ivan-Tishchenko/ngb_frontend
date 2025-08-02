@@ -8,10 +8,24 @@ import Mine from 'pages/Mine';
 import Quests from 'pages/Quests';
 import Refferals from 'pages/Refferals';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { useDispatch } from 'react-redux';
+import setUser from './redux/userActionsThunks.js';
 
 const APP = "https://ngbfrontendtest.netlify.app/";
 
+
+
 function App() {
+  const dispatch = useDispatch();
+
+
+  let telegram = window.Telegram?.WebApp || { tg: {initDataUnsafe: {user: {
+      id: "123",
+      first_name: "va",
+      last_name: "ti",
+      username: "@vati5",
+      is_premiun: false,
+    },},},};;
 
   useEffect(() => {
     const setAppHeight = () => {
@@ -20,9 +34,11 @@ function App() {
     };
 
     setAppHeight();
-    
+
+    dispatch(setUser(telegram.tg.initDataUnsafe.user));
 
     return 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
