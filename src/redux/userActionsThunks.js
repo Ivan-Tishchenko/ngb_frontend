@@ -3,30 +3,41 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
 
-const setUser = createAsyncThunk("user/setUserState", async (userData, {rejectWithValue}) =>  {
-    try {
-        console.log("try")
-        const checkUser = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user`, {
-            params: {userId: userData.id},
-            headers: {
-                // Authorization: `Bearer ${userData.token}`, // если есть токен 
-                "Content-Type": "application/json"
-    }});
+const setUser = createAsyncThunk("user/setUserState", async (userData, { rejectWithValue }) => {
+  try {
+    console.log("try to get user");
 
-    console.log(checkUser)
-        if(checkUser.data){
-            console.log("user was found")
-            return checkUser.data;
-        }
-        else {
-            console.log("user creating")
-            const createdUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/user`, userData)
-            return createdUser.data;
-        }
-    } catch (error) {
-        console.error("Ошибка при создании пользователя", error);
-        return rejectWithValue(error.response?.data || "Ошибка создания пользователя");
+    const checkUser = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user`, {
+      params: { userId: userData.id },
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${userData.token}` // если нужен токен
+      },
+    });
+
+    console.log("user was found");
+    return checkUser.data;
+
+  } catch (error) {
+    console.log(error)
+    if (error.response?.status === 404) {
+      console.log("user not found — creating new user");
+
+      try {
+        console.log("start creating")
+        console.log({userData});
+        const createdUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/user`, userData);
+        return createdUser.data;
+      } catch (creationError) {
+        console.error("Ошибка при создании пользователя:", creationError);
+        return rejectWithValue(creationError.response?.data || "Ошибка создания пользователя");
+      }
+
+    } else {
+      console.error("Другая ошибка при запросе пользователя:", error);
+      return rejectWithValue(error.response?.data || "Ошибка запроса пользователя");
     }
+  }
 });
 
 export default setUser;

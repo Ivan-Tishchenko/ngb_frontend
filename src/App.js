@@ -20,7 +20,7 @@ function App() {
 
 
   let telegram = window.Telegram?.WebApp || { tg: {initDataUnsafe: {user: {
-      id: "123",
+      id: 123,
       first_name: "va",
       last_name: "ti",
       username: "@vati5",
