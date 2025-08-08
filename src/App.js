@@ -17,6 +17,7 @@ const APP = "https://ngbfrontendtest.netlify.app/";
 
 function App() {
   const [tg, setTg] = useState(null);
+  const [errors, setErrors] = useState([])
   const dispatch = useDispatch();
 
 
@@ -50,6 +51,8 @@ function App() {
       const webApp = window.Telegram.WebApp;
       webApp.ready(); // Уведомляем Telegram, что WebApp готов
       setTg(webApp);
+    } else {
+      setErrors({test: JSON.stringify(window.Telegram), key: Math.random()})
     }
   }, []);
 
@@ -67,6 +70,7 @@ function App() {
           <div>test text </div>
           <div>{JSON.stringify(tg)}</div>
           <div>test text 2</div>
+          {errors.map(err => <div key={err.key}>{err.text}</div>)}
           </>} />
         </Routes>
       
