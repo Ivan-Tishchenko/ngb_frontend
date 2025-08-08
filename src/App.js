@@ -52,7 +52,7 @@ function App() {
       webApp.ready(); // Уведомляем Telegram, что WebApp готов
       setTg(webApp);
     } else {
-      setErrors([...errors, {test: JSON.stringify(window.Telegram), key: Math.random()}])
+      setErrors([...errors, {text: JSON.stringify(window.Telegram), key: Math.random()}])
     }
   }, []);
 
@@ -70,7 +70,8 @@ function App() {
           <div>test text </div>
           <div>{JSON.stringify(tg)}</div>
           <div>test text 2</div>
-          {errors.map(err => <div key={err.key}>{err.text}</div>)}
+          {errors.map(err => <div key={err.key}>--{err.text}</div>)}
+          <button onClick={()=>{setErrors([...errors, {text: JSON.stringify(window.Telegram), key: Math.random()}])}}>try</button>
           </>} />
         </Routes>
       
