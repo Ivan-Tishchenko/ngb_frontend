@@ -54,7 +54,7 @@ function App() {
     } else {
       setErrors([...errors, {text: JSON.stringify(window.Telegram), key: Math.random()}])
     }
-  }, []);
+  }, [errors]);
 
   return (
     <>
