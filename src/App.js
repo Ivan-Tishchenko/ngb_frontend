@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import User from 'blocks/User';
 import './App.css';
 import Nav from 'blocks/Nav';
@@ -16,6 +16,7 @@ const APP = "https://ngbfrontendtest.netlify.app/";
 
 
 function App() {
+  const [tg, setTg] = useState(null);
   const dispatch = useDispatch();
 
 
@@ -42,11 +43,14 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  
+
   useEffect(() => {
-    if (window.Telegram?.WebApp) {
-        window.Telegram.WebApp.expand();
+    if (window.Telegram && window.Telegram.WebApp) {
+      const webApp = window.Telegram.WebApp;
+      webApp.ready(); // Уведомляем Telegram, что WebApp готов
+      setTg(webApp);
     }
-    
   }, []);
 
   return (
@@ -61,7 +65,7 @@ function App() {
           <Route path="/reff" element={<Refferals /> }/>
           <Route path="/" element={<>
           <div>test text </div>
-          <div>{JSON.stringify(window.Telegram?.WebApp)}</div>
+          <div>{JSON.stringify(tg)}</div>
           <div>test text 2</div>
           </>} />
         </Routes>
