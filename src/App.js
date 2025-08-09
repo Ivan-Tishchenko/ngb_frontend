@@ -20,28 +20,23 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
+    if (window.Telegram && window.Telegram.WebApp) {
+      const webApp = window.Telegram.WebApp;
+      webApp.ready(); // Уведомляем Telegram, что WebApp готов
+    }
 
     const setAppHeight = () => {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 
-    setAppHeight(window.Telegram.WebApp.initDataUnsafe);
-    setTg()
+    setAppHeight();
+    
+    setTg(window.Telegram.WebApp.initDataUnsafe)
     dispatch(setUser(window.Telegram.WebApp.initDataUnsafe.user));
 
     return 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  
-
-  useEffect(() => {
-    if (window.Telegram && window.Telegram.WebApp) {
-      const webApp = window.Telegram.WebApp;
-      webApp.ready(); // Уведомляем Telegram, что WebApp готов
-    }
   }, []);
 
   return (
