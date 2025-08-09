@@ -3,9 +3,9 @@ import setUser from "./userActionsThunks";
 
 const initialState = {
     userAvatarURL: null,
-    userName: window.Telegram?.WebApp.tg.initDataUnsafe.user.first_name + window.Telegram?.WebApp.tg.initDataUnsafe.user.last_name,
-    userLink: window.Telegram?.WebApp.tg.initDataUnsafe.user.username,
-    userId: window.Telegram?.WebApp.tg.initDataUnsafe.user.id,
+    userName: window.Telegram?.WebApp?.tg?.initDataUnsafe?.user?.first_name + window.Telegram?.WebApp?.tg?.initDataUnsafe?.user?.last_name,
+    userLink: window.Telegram?.WebApp?.tg?.initDataUnsafe?.user?.username,
+    userId: window.Telegram?.WebApp?.tg?.initDataUnsafe?.user?.id,
     rang: 1,
     wallet: null,
     xpPoints: 0,
