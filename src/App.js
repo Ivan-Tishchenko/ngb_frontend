@@ -20,17 +20,9 @@ function App() {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
-
-  let telegram = window.Telegram?.WebApp || { tg: {initDataUnsafe: {user: {
-      id: 123,
-      first_name: "va",
-      last_name: "ti",
-      username: "@vati5",
-      is_premiun: false,
-    },},},};
+  useEffect(() => {
     
 
-  useEffect(() => {
     const setAppHeight = () => {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -38,7 +30,7 @@ function App() {
 
     setAppHeight();
 
-    dispatch(setUser(telegram?.tg?.initDataUnsafe.user));
+    dispatch(setUser(window.Telegram.WebApp.initDataUnsafe.user));
 
     return 
   // eslint-disable-next-line react-hooks/exhaustive-deps
