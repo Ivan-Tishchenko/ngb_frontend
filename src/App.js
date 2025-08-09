@@ -17,7 +17,6 @@ const APP = "https://ngbfrontendtest.netlify.app/";
 
 function App() {
   const [tg, setTg] = useState(null);
-  const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,8 +27,8 @@ function App() {
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 
-    setAppHeight();
-
+    setAppHeight(window.Telegram.WebApp.initDataUnsafe);
+    setTg()
     dispatch(setUser(window.Telegram.WebApp.initDataUnsafe.user));
 
     return 
@@ -42,7 +41,6 @@ function App() {
     if (window.Telegram && window.Telegram.WebApp) {
       const webApp = window.Telegram.WebApp;
       webApp.ready(); // Уведомляем Telegram, что WebApp готов
-      setTg(webApp);
     }
   }, []);
 
@@ -60,8 +58,6 @@ function App() {
           <div>test text </div>
           <div>{JSON.stringify(tg)}</div>
           <div>test text 2</div>
-          {errors.map(err => <div key={err.key}>--{err.text}</div>)}
-          <button onClick={()=>{setErrors([...errors, {text: JSON.stringify(window.Telegram), key: Math.random()}])}}>try</button>
           </>} />
         </Routes>
       
