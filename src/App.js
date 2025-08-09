@@ -51,10 +51,8 @@ function App() {
       const webApp = window.Telegram.WebApp;
       webApp.ready(); // Уведомляем Telegram, что WebApp готов
       setTg(webApp);
-    } else {
-      setErrors([...errors, {text: JSON.stringify(window.Telegram), key: Math.random()}])
     }
-  }, [errors]);
+  }, []);
 
   return (
     <>
