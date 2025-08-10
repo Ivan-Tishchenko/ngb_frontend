@@ -14,7 +14,6 @@ const setUser = createAsyncThunk("user/setUserState", async (userData, { rejectW
       },
     });
 
-    console.log("user was found");
     return checkUser.data;
 
   } catch (error) {

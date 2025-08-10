@@ -9,7 +9,7 @@ import Quests from 'pages/Quests';
 import Refferals from 'pages/Refferals';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useDispatch } from 'react-redux';
-import setUser from './redux/userActionsThunks.js';
+import setUser from './redux/setUserActionThunk.js';
 
 const APP = "https://ngbfrontendtest.netlify.app/";
 

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import setUser from "./userActionsThunks";
+import setUser from "./setUserActionThunk";
+import openBid from "./balanceActionThunk";
 
 const initialState = {
     userAvatarURL: null,
@@ -12,6 +13,7 @@ const initialState = {
     ballance: 0,
     tickets: 0,
     bid: {
+        loading: false
     },
     reffCode: null,
 }
@@ -19,23 +21,7 @@ const initialState = {
 export const userSlice = createSlice({
     name: "user",
     initialState,
-    reducers:{
-        createBid: (state, action)=>{
-            state.bid = {
-                type: action, // вытащить тип и сумму
-                time: Date.now(),
-            }
-        },
-        remuveBid: (state, action)=> {
-            state.bid = null;
-        },
-        connectWallet: (state, action) => {
-            state.wallet = "вытащить кошельок";
-        },
-        disconnectWallet: (state, action) => {
-            state.wallet = null;
-        },
-    },
+    reducers:{},
     extraReducers: (builder) => {
     builder
         .addCase(setUser.pending, (state) => {
@@ -54,8 +40,23 @@ export const userSlice = createSlice({
             state.reffCode = reffCode;
             state.tickets = tickets;
             state.bid = bid;
+            state.loading = false;
         })
         .addCase(setUser.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message ?? 'Ошибка при загрузке данных';
+        })
+        .addCase(openBid.pending, (state, action) => {
+            state.bid = {loading:true};
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(openBid.fulfilled, (state, action) => {
+            state.bid = {...action.payload.bid, loading: false};
+            state.ballance = action.payload.ballance;
+            state.loading = false;
+        })
+        .addCase(openBid.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })

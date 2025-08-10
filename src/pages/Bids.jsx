@@ -1,12 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
+import { useSelector } from 'react-redux';
+import { selectBallance } from 'redux/userSelectors';
 
 const Bids = () => {
   const socketRef = useRef(null);
   const [price, setPrice] = useState(null);
 
   const [info, setInfo] = useState(false);
+  const [count, setCount] = useState(0)
+
+  const balance = useSelector(selectBallance);
 
   useEffect(() => {
     // WebSocket (Binance)
@@ -59,20 +64,31 @@ const Bids = () => {
       <div className='bids_block'>
 
         <div className='bids_open'>
-          <button className='bid bid_up' ><span className='bid_symbol'>{"<"}</span>  up</button>
-          <button className='bid bid_down'><span className='bid_symbol'>{">"}</span>  down</button>
+          <button className='bid bid_up' onClick={()=> {
+            
+          }}><span className='bid_symbol'>{"<"}</span>  up</button>
+          <button className='bid bid_down' onClick={()=> {
+            
+          }}><span className='bid_symbol'>{">"}</span>  down</button>
         </div>
 
         <div className='bids_value'>
 
           <div className='bids_percent_buttons' >
-            <button className='bid_count 25%'>25%</button>
-            <button className='bid_count 50%'>50%</button>
-            <button className='bid_count 100%'>100%</button>
+            <button className='bid_count 25%' onClick={()=>setCount(parseInt(balance * 0.25))}>25%</button>
+            <button className='bid_count 50%' onClick={()=>setCount(parseInt(balance * 0.5))}>50%</button>
+            <button className='bid_count 100%' onClick={()=>setCount(parseInt(balance))}>100%</button>
           </div>
 
           <div className='bid_value_input'>
-            <input type='number' className='bid_value input_value' name='bid_value' id='bid_value' />
+            <input
+              type="number"
+              className="bid_value input_value"
+              name="bid_value"
+              id="bid_value"
+              value={count}
+              onChange={(event) => setCount(Number(event.target.value))}
+            />
             <img src={GEMicon} alt="ton icon" />
           </div>
 
