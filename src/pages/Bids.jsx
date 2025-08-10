@@ -3,7 +3,7 @@ import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBallance, selectBid } from '../redux/userSelectors';
-import { closeBid } from '../redux/balanceActionThunk';
+import openBid, { closeBid } from '../redux/balanceActionThunk';
 
 const Bids = () => {
   const dispatch = useDispatch();
@@ -80,10 +80,12 @@ const Bids = () => {
 { !isCurentBid ? <>
         <div className='bids_open'>
           <button className='bid bid_up' onClick={()=> {
-
+            dispatch(openBid({value: count, type: "+"}));
+            setCount(0);
           }}><span className='bid_symbol'>{"<"}</span>  up</button>
           <button className='bid bid_down' onClick={()=> {
-
+            dispatch(openBid({value: count, type: "-"}));
+            setCount(0);
           }}><span className='bid_symbol'>{">"}</span>  down</button>
         </div>
 
