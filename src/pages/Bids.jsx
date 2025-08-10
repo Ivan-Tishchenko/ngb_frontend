@@ -3,7 +3,7 @@ import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBallance, selectBid } from '../redux/userSelectors';
-import { closeBid } from 'redux/balanceActionThunk';
+import { closeBid } from '../redux/balanceActionThunk';
 
 const Bids = () => {
   const dispatch = useDispatch();
