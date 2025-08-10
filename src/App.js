@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import User from 'blocks/User';
 import './App.css';
 import Nav from 'blocks/Nav';
