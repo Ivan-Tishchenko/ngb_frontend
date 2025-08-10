@@ -4,7 +4,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 const openBid = createAsyncThunk("user/setBid", async (bid,  { getState, rejectWithValue }) => {
     const user = getState();
     try {
-        const createdBid = await axios.post(`${process.env.REACT_APP_API_URL}api/bid/bid`, {
+        const createdBid = await axios.post(`${process.env.REACT_APP_API_URL}api/bids/bid`, {
                 body: bid,
                 headers: {
                     "Content-Type": "application/json",
@@ -12,7 +12,7 @@ const openBid = createAsyncThunk("user/setBid", async (bid,  { getState, rejectW
                 },
             });
         if(createdBid.data) {
-            const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/user/update`, {
+            const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/update`, {
                 body: {
                     event: "bid",
                     bid: createdBid.data,
@@ -30,11 +30,11 @@ const openBid = createAsyncThunk("user/setBid", async (bid,  { getState, rejectW
 const closeBid = createAsyncThunk("user/closeBid", async (bidId, { getState, rejectWithValue }) => {
     const user = getState();
     try {
-        const bidInfo = await axios.get(`${process.env.REACT_APP_API_URL}api/bid/bid`, {
+        const bidInfo = await axios.get(`${process.env.REACT_APP_API_URL}api/bids/bid`, {
             params: {bidId}
         });
         if(bidInfo.data && bidInfo.data.result) {
-           const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/user/update`, {
+           const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/update`, {
                 body: {
                     event: "bid result",
                     bid: bidInfo.data,
