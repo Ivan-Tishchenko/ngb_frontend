@@ -16,7 +16,6 @@ const APP = "https://ngbfrontendtest.netlify.app/";
 
 
 function App() {
-  const [tg, setTg] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,8 +30,7 @@ function App() {
     };
 
     setAppHeight();
-    
-    setTg(window.Telegram.WebApp.initDataUnsafe)
+
     dispatch(setUser(window.Telegram.WebApp.initDataUnsafe.user));
 
     return 
@@ -50,9 +48,6 @@ function App() {
           <Route path="/quests" element={<Quests /> }/>
           <Route path="/reff" element={<Refferals /> }/>
           <Route path="/" element={<>
-          <div>test text </div>
-          <div>{JSON.stringify(tg)}</div>
-          <div>test text 2</div>
           </>} />
         </Routes>
       
