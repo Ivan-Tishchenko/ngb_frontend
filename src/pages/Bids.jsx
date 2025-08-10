@@ -77,7 +77,7 @@ const Bids = () => {
       </div>
 
       <div className='bids_block'>
-{ isCurentBid ? <>
+{ !isCurentBid ? <>
         <div className='bids_open'>
           <button className='bid bid_up' onClick={()=> {
 
