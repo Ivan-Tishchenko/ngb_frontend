@@ -5,7 +5,7 @@ const openBid = createAsyncThunk("user/setBid", async (bid,  { getState, rejectW
     const user = getState();
     try {
         const createdBid = await axios.post(`${process.env.REACT_APP_API_URL}api/bids/bid`, bid,
-                headers: {
+                {
                     "Content-Type": "application/json",
                     // Authorization: `Bearer ${userData.token}` // если нужен токен
                 });
