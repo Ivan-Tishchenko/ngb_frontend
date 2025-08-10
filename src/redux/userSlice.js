@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import setUser from "./setUserActionThunk";
-import openBid from "./balanceActionThunk";
+import openBid, {closeBid} from "./balanceActionThunk";
 
 const initialState = {
     userAvatarURL: null,
@@ -57,6 +57,22 @@ export const userSlice = createSlice({
             state.loading = false;
         })
         .addCase(openBid.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message ?? 'Ошибка при загрузке данных';
+        })
+        .addCase(closeBid.pending, (state,action) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(closeBid.fulfilled, (state,action) => {
+            state.bid = {loading: false,};
+            state.ballance = action.payload.user.ballance;
+            state.xp = action.payload.user.xp;
+            state.bid = {result: action.payload.bid.result, loading: false, profit: action.payload.bid.profit};
+            state.loading = false
+
+        })
+        .addCase(closeBid.rejected, (state,action) => {
             state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })

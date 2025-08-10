@@ -27,4 +27,26 @@ const openBid = createAsyncThunk("user/setBid", async (bid,  { getState, rejectW
     }
 })
 
+const closeBid = createAsyncThunk("user/closeBid", async (bidId, { getState, rejectWithValue }) => {
+    const user = getState();
+    try {
+        const bidInfo = await axios.get(`${process.env.REACT_APP_API_URL}api/bid/bid`, {
+            params: {bidId}
+        });
+        if(bidInfo.data && bidInfo.data.result) {
+           const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/user/update`, {
+                body: {
+                    event: "bid result",
+                    bid: bidInfo.data,
+                    user: user,
+                }});
+            return {user: updateUser.data, bid: bidInfo.data };
+        }
+    } catch (error) {
+        console.error("Другая ошибка при закрытии ставки:", error);
+        return rejectWithValue(error.response?.data || "Ошибка закрытии ставки");
+    }
+})
+
 export default openBid;
+export {closeBid};

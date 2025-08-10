@@ -1,17 +1,22 @@
 import React, {useEffect, useRef, useState} from 'react';
 import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
-import { useSelector } from 'react-redux';
-import { selectBallance } from 'redux/userSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectBallance, selectBid } from 'redux/userSelectors';
+import { closeBid } from 'redux/balanceActionThunk';
 
 const Bids = () => {
+  const dispatch = useDispatch();
   const socketRef = useRef(null);
   const [price, setPrice] = useState(null);
+
+  const [isCurentBid, setIsCurrentBid] = useState(true);
 
   const [info, setInfo] = useState(false);
   const [count, setCount] = useState(0)
 
   const balance = useSelector(selectBallance);
+  const bid = useSelector(selectBid);
 
   useEffect(() => {
     // WebSocket (Binance)
@@ -39,6 +44,16 @@ const Bids = () => {
     };
   }, []);
   
+  useEffect(() => {
+    if(!(bid.bidId)){
+      setIsCurrentBid(false)
+    } else if(bid.endTime - Date.now() <=0) {
+      dispatch(closeBid(bid.bidId));
+    } else {
+      setTimeout(()=>dispatch(closeBid(bid.bidId)), bid.endTime - Date.now());
+    }
+  }, [bid, dispatch])
+
   return (
     <section className='section bids_section'>
 
@@ -62,22 +77,22 @@ const Bids = () => {
       </div>
 
       <div className='bids_block'>
-
+{ isCurentBid ? <>
         <div className='bids_open'>
           <button className='bid bid_up' onClick={()=> {
-            
+
           }}><span className='bid_symbol'>{"<"}</span>  up</button>
           <button className='bid bid_down' onClick={()=> {
-            
+
           }}><span className='bid_symbol'>{">"}</span>  down</button>
         </div>
 
         <div className='bids_value'>
 
           <div className='bids_percent_buttons' >
-            <button className='bid_count 25%' onClick={()=>setCount(parseInt(balance * 0.25))}>25%</button>
-            <button className='bid_count 50%' onClick={()=>setCount(parseInt(balance * 0.5))}>50%</button>
-            <button className='bid_count 100%' onClick={()=>setCount(parseInt(balance))}>100%</button>
+            <button className='bid_count 25' onClick={()=>setCount(parseInt(balance * 0.25))}>25%</button>
+            <button className='bid_count 50' onClick={()=>setCount(parseInt(balance * 0.5))}>50%</button>
+            <button className='bid_count 100' onClick={()=>setCount(parseInt(balance))}>100%</button>
           </div>
 
           <div className='bid_value_input'>
@@ -93,7 +108,9 @@ const Bids = () => {
           </div>
 
         </div>
-
+        </> : 
+        <div>{bid.bidId}</div>
+}
       </div>
     </section>
   )
