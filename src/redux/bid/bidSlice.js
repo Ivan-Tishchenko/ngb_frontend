@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import openBid from "./actions/openBid";
-import closeBid from "./actions/closeBid";
+import openBid from "./actions/openBid.js";
+import closeBid from "./actions/closeBid.js";
 
 const initialState = {
         bidId: null,

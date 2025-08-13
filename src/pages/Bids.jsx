@@ -2,10 +2,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBallance, selectCurrentBid, selectUserId } from '../redux/user/userSelectors';
-import openBid from '../redux/bid/actions/openBid';
-import closeBid from '../redux/bid/actions/closeBid';
-import { selectBidEndTime, selectBidStartPrice, selectBidType, selectBidValue } from '../redux/bid/bidSelectors';
+import { selectBallance, selectCurrentBid, selectUserId } from '../redux/user/userSelectors.js';
+import openBid from '../redux/bid/actions/openBid.js';
+import closeBid from '../redux/bid/actions/closeBid.js';
+import { selectBidEndTime, selectBidStartPrice, selectBidType, selectBidValue } from '../redux/bid/bidSelectors.js';
 
 const Bids = () => {
   const dispatch = useDispatch();
