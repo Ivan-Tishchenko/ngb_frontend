@@ -5,7 +5,7 @@ const openBid_user = createAsyncThunk("user/setBid", async (bid,  { getState, re
     const user = getState();
     try {
        
-        const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/update`, {
+        const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/user/update`, {
                 event: "bid",
                 currentBid: bid.bidId,
                 userId: user.userId,
