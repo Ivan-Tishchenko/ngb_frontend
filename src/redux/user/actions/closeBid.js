@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const closeBid = createAsyncThunk("user/closeBid", async (bid, { getState, rejectWithValue }) => {
+const closeBid_user = createAsyncThunk("user/closeBid", async (bid, { getState, rejectWithValue }) => {
     const user = getState();
     try {
 
@@ -23,4 +23,4 @@ const closeBid = createAsyncThunk("user/closeBid", async (bid, { getState, rejec
     }
 })
 
-export default closeBid;
+export default closeBid_user;

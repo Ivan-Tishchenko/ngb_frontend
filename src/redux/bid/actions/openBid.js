@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import openBid_user from "../../user/actions/openBid.js";
 
 const openBid = createAsyncThunk("bid/openBid", async (bid,  { dispatch, rejectWithValue }) => {
     try {
@@ -8,7 +9,7 @@ const openBid = createAsyncThunk("bid/openBid", async (bid,  { dispatch, rejectW
                     "Content-Type": "application/json",
                     // Authorization: `Bearer ${userData.token}` // если нужен токен
                 });
-        dispatch(openBid(createdBid.data));
+        dispatch(openBid_user(createdBid.data));
         return createdBid.data
     } catch (error) {
         console.error("Другая ошибка при создании ставки:", error);

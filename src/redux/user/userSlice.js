@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import setUser from "./actions/setUser.js";
-import openBid from "./actions/openBid.js";
-import closeBid from "./actions/closeBid.js";
+import openBid_user from "./actions/openBid.js";
+import closeBid_user from "./actions/closeBid.js";
 
 const initialState = {
     userAvatarURL: null,
@@ -45,30 +45,30 @@ export const userSlice = createSlice({
             state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
-        .addCase(openBid.pending, (state, action) => {
+        .addCase(openBid_user.pending, (state, action) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(openBid.fulfilled, (state, action) => {
+        .addCase(openBid_user.fulfilled, (state, action) => {
             state.ballance = action.payload.ballance;
             state.loading = false;
         })
-        .addCase(openBid.rejected, (state, action) => {
+        .addCase(openBid_user.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
-        .addCase(closeBid.pending, (state,action) => {
+        .addCase(closeBid_user.pending, (state,action) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(closeBid.fulfilled, (state,action) => {
+        .addCase(closeBid_user.fulfilled, (state,action) => {
             state.ballance = action.payload.ballance;
             state.xp = action.payload.xp;
             state.currentBid = null;
             state.loading = false
 
         })
-        .addCase(closeBid.rejected, (state,action) => {
+        .addCase(closeBid_user.rejected, (state,action) => {
             state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
