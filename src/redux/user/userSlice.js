@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import setUser from "./actions/setUser";
-import openBid, {closeBid} from "../balanceActionThunk";
+import openBid from "./actions/openBid";
+import closeBid from "./actions/closeBid";
 
 const initialState = {
     userAvatarURL: null,

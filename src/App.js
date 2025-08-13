@@ -31,7 +31,7 @@ function App() {
 
     setAppHeight();
 
-    dispatch(setU ser(window.Telegram.WebApp.initDataUnsafe.user));
+    dispatch(setUser(window.Telegram?.WebApp?.initDataUnsafe?.user));
 
     return 
   // eslint-disable-next-line react-hooks/exhaustive-deps
