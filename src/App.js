@@ -9,7 +9,7 @@ import Quests from 'pages/Quests';
 import Refferals from 'pages/Refferals';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useDispatch } from 'react-redux';
-import setUser from './redux/setUserActionThunk.js';
+import setUser from './redux/user/actions/setUser.js';
 
 const APP = "https://ngbfrontendtest.netlify.app/";
 
@@ -31,7 +31,7 @@ function App() {
 
     setAppHeight();
 
-    dispatch(setUser(window.Telegram.WebApp.initDataUnsafe.user));
+    dispatch(setU ser(window.Telegram.WebApp.initDataUnsafe.user));
 
     return 
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -4,7 +4,7 @@ import XP_icon from '../../img/XP.png';
 import GEM_icon from '../../img/DIAMOND.png';
 import './balance.css';
 import { useSelector } from 'react-redux';
-import { selectBallance, selectTickets, selectXpPoints } from '../../redux/userSelectors';
+import { selectBallance, selectTickets, selectXpPoints } from '../../redux/user/userSelectors';
 
 const Balance = () => {
   const xpPoints = useSelector(selectXpPoints);

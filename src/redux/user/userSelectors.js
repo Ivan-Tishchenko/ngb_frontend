@@ -7,6 +7,6 @@ export const selectXpPoints = (state) => state.user.xpPoints;
 export const selectRefferalFor = (state) => state.user.refferalFor;
 export const selectBallance = (state) => state.user.ballance;
 export const selectTickets = (state) => state.user.tickets;
-export const selectBid = (state) => state.user.bid;
+export const selectCurrentBid = (state) => state.user.currentBid;
 export const selectSignedAt = (state) => state.user.signedAt;
 export const selectReffCode = (state) => state.user.reffCode;

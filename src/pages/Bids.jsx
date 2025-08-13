@@ -2,21 +2,27 @@ import React, {useEffect, useRef, useState} from 'react';
 import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBallance, selectBid } from '../redux/userSelectors';
-import openBid, { closeBid } from '../redux/balanceActionThunk';
+import { selectBallance, selectCurrentBid, selectUserId } from '../redux/user/userSelectors';
+import openBid from '../redux/bid/actions/openBid';
+import closeBid from '../redux/bid/actions/closeBid';
+import { selectBidEndTime, selectBidStartPrice, selectBidType, selectBidValue } from '../redux/bid/bidSelectors';
 
 const Bids = () => {
   const dispatch = useDispatch();
   const socketRef = useRef(null);
   const [price, setPrice] = useState(null);
 
-  const [isCurentBid, setIsCurrentBid] = useState(true);
-
   const [info, setInfo] = useState(false);
   const [count, setCount] = useState(0)
 
-  const balance = useSelector(selectBallance);
-  const bid = useSelector(selectBid);
+  const currentBid = useSelector(selectCurrentBid);
+  const endTime = useSelector(selectBidEndTime);
+  const bidValue = useSelector(selectBidValue);
+  const bidType = useSelector(selectBidType);
+  const bidStartPrice = useSelector(selectBidStartPrice);
+  
+  const userId = useSelector(selectUserId);
+  const ballance = useSelector(selectBallance);
 
   useEffect(() => {
     // WebSocket (Binance)
@@ -45,14 +51,14 @@ const Bids = () => {
   }, []);
   
   useEffect(() => {
-    if(!(bid.bidId)){
-      setIsCurrentBid(false)
-    } else if(bid.endTime - Date.now() <=0) {
-      dispatch(closeBid(bid.bidId));
+    if(!currentBid){
+      return;
+    } else if(endTime - Date.now() <= 0) {
+      dispatch(closeBid(currentBid));
     } else {
-      setTimeout(()=>dispatch(closeBid(bid.bidId)), bid.endTime - Date.now());
+      setTimeout(()=>dispatch(closeBid(currentBid)), endTime - Date.now());
     }
-  }, [bid, dispatch])
+  }, [currentBid, dispatch, endTime])
 
   return (
     <section className='section bids_section'>
@@ -77,14 +83,20 @@ const Bids = () => {
       </div>
 
       <div className='bids_block'>
-{ !isCurentBid ? <>
+{ !currentBid ? <>
         <div className='bids_open'>
           <button className='bid bid_up' onClick={()=> {
-            dispatch(openBid({value: count, type: "+"}));
+            if(count === 0) {
+              return;
+            }
+            dispatch(openBid({value: count, type: "+", userId}));
             setCount(0);
           }}><span className='bid_symbol'>{"<"}</span>  up</button>
           <button className='bid bid_down' onClick={()=> {
-            dispatch(openBid({value: count, type: "-"}));
+            if(count === 0) {
+              return;
+            }
+            dispatch(openBid({value: count, type: "-", userId}));
             setCount(0);
           }}><span className='bid_symbol'>{">"}</span>  down</button>
         </div>
@@ -92,9 +104,9 @@ const Bids = () => {
         <div className='bids_value'>
 
           <div className='bids_percent_buttons' >
-            <button className='bid_count 25' onClick={()=>setCount(parseInt(balance * 0.25))}>25%</button>
-            <button className='bid_count 50' onClick={()=>setCount(parseInt(balance * 0.5))}>50%</button>
-            <button className='bid_count 100' onClick={()=>setCount(parseInt(balance))}>100%</button>
+            <button className='bid_count 25' onClick={()=>setCount(parseInt(ballance * 0.25))}>25%</button>
+            <button className='bid_count 50' onClick={()=>setCount(parseInt(ballance * 0.5))}>50%</button>
+            <button className='bid_count 100' onClick={()=>setCount(parseInt(ballance))}>100%</button>
           </div>
 
           <div className='bid_value_input'>
@@ -104,14 +116,18 @@ const Bids = () => {
               name="bid_value"
               id="bid_value"
               value={count}
-              onChange={(event) => setCount(Number(event.target.value))}
+              onChange={(event) =>{
+                if(Number(event.target.value <= ballance)) {
+                  setCount(Number(event.target.value))}
+                }
+              } 
             />
             <img src={GEMicon} alt="ton icon" />
           </div>
 
         </div>
         </> : 
-        <div>{bid.bidId}</div>
+        <div>{currentBid}"   "{bidType}"   "{bidValue}"   " {bidStartPrice}</div>
 }
       </div>
     </section>

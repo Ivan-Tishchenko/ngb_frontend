@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import setUser from "./setUserActionThunk";
-import openBid, {closeBid} from "./balanceActionThunk";
+import setUser from "./actions/setUser";
+import openBid, {closeBid} from "../balanceActionThunk";
 
 const initialState = {
     userAvatarURL: null,
@@ -12,9 +12,7 @@ const initialState = {
     xpPoints: 0,
     ballance: 0,
     tickets: 0,
-    bid: {
-        loading: false
-    },
+    currentBid: null,
     reffCode: null,
 }
 
@@ -47,12 +45,10 @@ export const userSlice = createSlice({
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
         .addCase(openBid.pending, (state, action) => {
-            state.bid = {loading:true};
             state.loading = true;
             state.error = null;
         })
         .addCase(openBid.fulfilled, (state, action) => {
-            state.bid = {...action.payload.bid, loading: false};
             state.ballance = action.payload.ballance;
             state.loading = false;
         })
@@ -65,10 +61,9 @@ export const userSlice = createSlice({
             state.error = null;
         })
         .addCase(closeBid.fulfilled, (state,action) => {
-            state.bid = {loading: false,};
-            state.ballance = action.payload.user.ballance;
-            state.xp = action.payload.user.xp;
-            state.bid = {result: action.payload.bid.result, loading: false, profit: action.payload.bid.profit};
+            state.ballance = action.payload.ballance;
+            state.xp = action.payload.xp;
+            state.currentBid = null;
             state.loading = false
 
         })
@@ -78,7 +73,5 @@ export const userSlice = createSlice({
         })
     }
 });
-
-export const {createBid, remuveBid, connectWallet, disconnectWallet, setUserState} = userSlice.actions;
 
 export default userSlice.reducer
