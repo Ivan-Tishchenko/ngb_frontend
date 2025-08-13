@@ -1,17 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    
+    quests: [],
 }
 
 export const questSlice = createSlice({
     name: "quests",
     initialState,
     reducers:{},
-    extraReducers: (builder) => {
-    builder
-        .addCase()
-    }
 });
 
 export default questSlice.reducer
