@@ -5,7 +5,6 @@ import COPYicon from '../img/COPY.png';
 import './refferals.css';
 import { getRefferals } from 'dev_version_API/API';
 import { useSelector } from 'react-redux';
-import { selectReffCode } from '../redux/userSelectors';
 import { selectReffCode } from '../redux/user/userSelectors';
 
 
