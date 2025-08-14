@@ -10,6 +10,7 @@ import Refferals from 'pages/Refferals';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useDispatch } from 'react-redux';
 import setUser from './redux/user/actions/setUser.js';
+import openBid from './redux/bid/actions/openBid.js';
 
 const APP = "https://ngbfrontendtest.netlify.app/";
 
@@ -48,6 +49,13 @@ function App() {
           <Route path="/quests" element={<Quests /> }/>
           <Route path="/reff" element={<Refferals /> }/>
           <Route path="/" element={<>
+          <button onClick={()=>{
+            dispatch(setUser({id: 1450491953}))
+          }} >setuser</button>
+            
+            <button onClick={()=>{
+            dispatch(openBid({value: 132, type: "-", userId: 1450491953}))
+          }} >open Bid</button>
           </>} />
         </Routes>
       
