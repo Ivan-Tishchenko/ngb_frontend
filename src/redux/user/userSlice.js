@@ -28,7 +28,8 @@ export const userSlice = createSlice({
             state.error = null;
         })
         .addCase(setUser.fulfilled, (state, action)=>{
-            const { userId, userName, userLink, rang, wallet, xp, reffCode, ballance, tickets, currentBid, } = action.payload;
+            const { userAvatarURL, userId, userName, userLink, rang, wallet, xp, reffCode, ballance, tickets, currentBid, } = action.payload;
+            state.userAvatarURL = userAvatarURL;
             state.userName = userName;
             state.ballance = ballance;
             state.userId = userId;
@@ -51,7 +52,7 @@ export const userSlice = createSlice({
         })
         .addCase(openBid_user.fulfilled, (state, action) => {
             state.ballance = action.payload.ballance;
-            state.currentBid = action.payload.currentBid;
+            state.currentBid = action.payload.currentBid || "problem";
             state.loading = false;
         })
         .addCase(openBid_user.rejected, (state, action) => {

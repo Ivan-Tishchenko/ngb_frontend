@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const closeBid_user = createAsyncThunk("user/closeBid", async (bid, { getState, rejectWithValue }) => {
-    const user = getState();
+    const {user} = getState();
     try {
 
            const updateUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/user/update`, {
