@@ -3,9 +3,9 @@ import XPicon from '../img/XP.png';
 import GEMicon from '../img/DIAMOND.png';
 import COPYicon from '../img/COPY.png';
 import './refferals.css';
-import { getRefferals } from 'dev_version_API/API';
 import { useSelector } from 'react-redux';
-import { selectReffCode } from '../redux/user/userSelectors';
+import { selectReffCode } from '../redux/user/userSelectors.js';
+import axios from 'axios';
 
 
 const Refferals = () => {
@@ -15,13 +15,12 @@ const Refferals = () => {
   const reffCode = useSelector(selectReffCode);
 
   useEffect(()=> {
-    const fetchData = async () => {
-    const data = await getRefferals(reffCode);
-    setRefferals(data);
-    console.log(data);
-  };
+    const getRefferals = async (code) => {
+      const userRefferals = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user/refferals`, {params: {reffcode: code}});
+      setRefferals(userRefferals);
+    }
 
-  fetchData();
+    getRefferals(reffCode);
   }, [reffCode])
 
   return (
@@ -83,7 +82,7 @@ const Refferals = () => {
             <button className={`refferal_level ${active === 3 ? "active" : ""}`} onClick={()=> setActive(3)}>3 уровень</button>
           </div>
           {
-            refferals.map(refferal => <div className='refferal'>{refferal?.userName}</div> )
+            refferals.map(refferal => <div className='refferal'>{refferal.refferalUsername}</div> )
           }
         </div>
       </div>
