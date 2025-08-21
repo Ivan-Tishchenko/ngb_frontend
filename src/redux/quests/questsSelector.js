@@ -1,0 +1,1 @@
+export const selectQuests = (state) => state.quests.quests;

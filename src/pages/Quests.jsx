@@ -2,35 +2,21 @@ import React, { useEffect, useState } from 'react';
 import './quests.css';
 import XPicon from '../img/XP.png';
 import GEMicon from '../img/DIAMOND.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectQuests } from '../redux/quests/questsSelector.js';
+import setQuests from '../redux/quests/actions/setQuests.js';
 
 const Quests = () => {
+  const dispatch = useDispatch();
   const [active, setActive] = useState("daily"); /* "daily" or "standart" */
-  const [quests, setQuests]= useState([]);
   const [modal, setModal] = useState(false);
-  const [activeQuest, setActiveQuest] = useState({})
+  const [activeQuest, setActiveQuest] = useState({});
+
+  const quests = useSelector(selectQuests);
 
   useEffect(()=>{
-    setQuests([{questId: 1, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 2, text: "ВСТУПИ В КАНАЛ 'QWERTZUIOP'", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 3, text: "Пригласи друзей", isDone: true, isClaimed: true, rewardXP: 200, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 4, text: "Пригласи друзей", isDone: true, isClaimed: false, rewardXP: 25, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 5, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: 2},
-                                       {questId: 6, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 7, text: "ПОДПИШИСЬ", isDone: true, isClaimed: true, rewardXP: 10, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 8, text: "Пригласи друзей", isDone: true, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 9, text: "СДЕЛАЙ ЧТОНИБУДЬ", isDone: false, isClaimed: false, rewardXP: 110, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 10, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: 1},
-                                       {questId: 11, text: "Пригласи друзей", isDone: true, isClaimed: true, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 12, text: "Пригласи друзей", isDone: true, isClaimed: false, rewardXP: 20, rewardGEM: 1, executionsCount: 5},
-                                       {questId: 13, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 50, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 14, text: "СДЕЛАЙ ЧТОТО ЕШЕ", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 15, text: "Пригласи друзей", isDone: true, isClaimed: true, rewardXP: 20, rewardGEM: 10, executionsCount: "infinity"},
-                                       {questId: 16, text: "Я НЕ ПИДУМАЛ", isDone: true, isClaimed: false, rewardXP: 30, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 17, text: "Пригласи друзей", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 18, text: "ПОТАНЦУЙ", isDone: false, isClaimed: false, rewardXP: 20, rewardGEM: 20, executionsCount: "infinity"},
-                                       {questId: 19, text: "Пригласи друзей", isDone: true, isClaimed: true, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"},
-                                       {questId: 20, text: "Пригласи друзей", isDone: true, isClaimed: false, rewardXP: 20, rewardGEM: 0, executionsCount: "infinity"}
-                                      ]);
+    dispatch(setQuests("daily"));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (<>
@@ -47,8 +33,14 @@ const Quests = () => {
         </div>}
     <div className='quests_block'>
       <div className='quests_type_switcher'>
-        <button className={`quest_type daily ${active === "daily" ? "active" : ""}`} onClick={()=>setActive("daily")}>Ежедневные</button>
-        <button className={`quest_type standart ${active === "standart" ? "active" : ""}`} onClick={()=>setActive("standart")}>Обычные</button>
+        <button className={`quest_type daily ${active === "daily" ? "active" : ""}`} onClick={()=> {
+          setActive("daily");
+          dispatch(setQuests("daily"));
+          }}>Ежедневные</button>
+        <button className={`quest_type standart ${active === "standart" ? "active" : ""}`} onClick={()=> {
+          setActive("standart");
+          dispatch(setQuests("standart"));
+        }}>Обычные</button>
       </div>
       <ul className='quests_list'>
         {/* generate quests */
