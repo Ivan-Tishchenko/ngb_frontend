@@ -17,7 +17,7 @@ const Refferals = () => {
   useEffect(()=> {
     const getRefferals = async (code) => {
       const userRefferals = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user/refferals`, {params: {reffcode: code}});
-      setRefferals(userRefferals);
+      setRefferals(userRefferals.data);
     }
 
     getRefferals(reffCode);
