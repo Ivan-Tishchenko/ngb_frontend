@@ -25,9 +25,9 @@ const Refferals = () => {
 
   return (
     <div className='refferals_page'>
-      <div className='reff_sistem_info'>
+      <div className='reff_system_info'>
         <h1 className='refferal_system_info_header'>Реферальная система</h1>
-        <div className='reff_sistem_info_block'>
+        <div className='reff_system_info_block'>
           <ul className='points_info_block'>
             <li className='points_info'>
               <img src={XPicon} alt="XP points icon" />
