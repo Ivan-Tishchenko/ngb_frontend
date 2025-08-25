@@ -15,13 +15,15 @@ const Refferals = () => {
   const reffCode = useSelector(selectReffCode);
 
   useEffect(()=> {
-    const getRefferals = async (code) => {
-      const userRefferals = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user/refferals`, {params: {reffcode: code}});
-      setRefferals(userRefferals.data);
+    const getRefferals = async (code, lvl) => {
+      const userRefferals = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user/refferals`, {params: {reffcode: code,
+        refferalsLvl: lvl
+      }});
+      setRefferals(userRefferals.data, active);
     }
 
     getRefferals(reffCode);
-  }, [reffCode])
+  }, [reffCode, active])
 
   return (
     <div className='refferals_page'>
@@ -82,7 +84,12 @@ const Refferals = () => {
             <button className={`refferal_level ${active === 3 ? "active" : ""}`} onClick={()=> setActive(3)}>3 уровень</button>
           </div>
           {
-            refferals.map(refferal => <div className='refferal'>{refferal.refferalUsername}</div> )
+            refferals.map(refferal => <div className='refferal' key={refferal.refferalUsername}>
+              <img href={refferal.refferalAvatar} alt="refferal avatar" />
+              <span>{refferal.refferalName}</span>
+              <span>{refferal.refferalUsername}</span>
+              {refferal.isPremium ? <span>premium</span> : <span>standart</span>}
+            </div> )
           }
         </div>
       </div>
