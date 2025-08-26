@@ -19,10 +19,10 @@ const Refferals = () => {
       const userRefferals = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user/refferals`, {params: {reffcode: code,
         refferalsLvl: lvl
       }});
-      setRefferals(userRefferals.data, active);
+      setRefferals(userRefferals.data);
     }
 
-    getRefferals(reffCode);
+    getRefferals(reffCode, active);
   }, [reffCode, active])
 
   return (
