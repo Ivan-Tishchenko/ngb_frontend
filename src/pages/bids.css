@@ -219,3 +219,21 @@
     align-items: center;
     justify-content: center;
 }
+
+.current_bid_block {
+    margin-top: 50px;
+    width: 95dvw;
+    height: 100px;
+
+    border: 2px solid var(--standart-color);
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    justify-content:center;
+
+    background-color: color-mix(in srgb, var(--standart-color) 30%, transparent);
+
+}

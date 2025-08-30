@@ -31,7 +31,7 @@ function App() {
 
     setAppHeight();
 
-    dispatch(setUser(window.Telegram?.WebApp?.initDataUnsafe?.user));
+    dispatch(setUser({"id":6687958843,"first_name":"vati","last_name":"","username":"vati5","language_code":"ru","allows_write_to_pm":true,"photo_url":"https://t.me/i/userpic/320/Qjm5iRJL7965IDnGjczocZRtTiIi5Y7BoCaUdA0li1w.svg"}));
 
     return 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,7 +49,7 @@ function App() {
           <Route path="/reff" element={<Refferals /> }/>
           <Route path="/" element={<>
           <button onClick={()=>{
-            dispatch(setUser({id: 1450491953}))
+            dispatch(setUser({id: 6687958843}))
           }} >setuser</button>
           </>} />
         </Routes>

@@ -56,7 +56,7 @@ const Bids = () => {
     } else if(endTime - Date.now() <= 0) {
       dispatch(closeBid(currentBid));
     } else {
-      setTimeout(()=>dispatch(closeBid(currentBid)), endTime - Date.now());
+      setTimeout(()=>dispatch(closeBid(currentBid)), endTime - Date.now() + 5);
     }
   }, [currentBid, dispatch, endTime])
 
@@ -83,52 +83,59 @@ const Bids = () => {
       </div>
 
       <div className='bids_block'>
-{ !currentBid ? <>
-        <div className='bids_open'>
-          <button className='bid bid_up' onClick={()=> {
-            if(count === 0) {
-              return;
-            }
-            dispatch(openBid({value: count, type: "+", userId}));
-            setCount(0);
-          }}><span className='bid_symbol'>{"<"}</span>  up</button>
-          <button className='bid bid_down' onClick={()=> {
-            if(count === 0) {
-              return;
-            }
-            dispatch(openBid({value: count, type: "-", userId}));
-            setCount(0);
-          }}><span className='bid_symbol'>{">"}</span>  down</button>
-        </div>
-
-        <div className='bids_value'>
-
-          <div className='bids_percent_buttons' >
-            <button className='bid_count 25' onClick={()=>setCount(parseInt(ballance * 0.25))}>25%</button>
-            <button className='bid_count 50' onClick={()=>setCount(parseInt(ballance * 0.5))}>50%</button>
-            <button className='bid_count 100' onClick={()=>setCount(parseInt(ballance))}>100%</button>
+      { !currentBid ? 
+        <>
+          <div className='bids_open'>
+            <button className='bid bid_up' onClick={()=> {
+              if(count === 0) {
+                return;
+              }
+              dispatch(openBid({value: count, type: "+", userId}));
+              setCount(0);
+            }}><span className='bid_symbol'>{"<"}</span>  up</button>
+            <button className='bid bid_down' onClick={()=> {
+              if(count === 0) {
+                return;
+              }
+              dispatch(openBid({value: count, type: "-", userId}));
+              setCount(0);
+            }}><span className='bid_symbol'>{">"}</span>  down</button>
           </div>
 
-          <div className='bid_value_input'>
-            <input
-              type="number"
-              className="bid_value input_value"
-              name="bid_value"
-              id="bid_value"
-              value={count}
-              onChange={(event) =>{
-                if(Number(event.target.value <= ballance)) {
-                  setCount(Number(event.target.value))}
-                }
-              } 
-            />
-            <img src={GEMicon} alt="ton icon" />
-          </div>
+          <div className='bids_value'>
 
+            <div className='bids_percent_buttons' >
+              <button className='bid_count 25' onClick={()=>setCount(parseInt(ballance * 0.25))}>25%</button>
+              <button className='bid_count 50' onClick={()=>setCount(parseInt(ballance * 0.5))}>50%</button>
+              <button className='bid_count 100' onClick={()=>setCount(parseInt(ballance))}>100%</button>
+            </div>
+
+            <div className='bid_value_input'>
+              <input
+                type="number"
+                className="bid_value input_value"
+                name="bid_value"
+                id="bid_value"
+                value={count}
+                onChange={(event) =>{
+                  if(Number(event.target.value <= ballance)) {
+                    setCount(Number(event.target.value))}
+                  }
+                } 
+              />
+              <img src={GEMicon} alt="ton icon" />
+            </div>
+
+          </div>
+        </> 
+      : 
+        <div className='current_bid_block'>
+          {currentBid}
+             {bidType}   
+             {bidValue}  
+             {bidStartPrice}
         </div>
-        </> : 
-        <div>{currentBid}"   "{bidType}"   "{bidValue}"   " {bidStartPrice}</div>
-}
+      }
       </div>
     </section>
   )

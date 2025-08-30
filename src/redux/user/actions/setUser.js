@@ -22,7 +22,7 @@ const setUser = createAsyncThunk("user/setUserState", async (userData, { rejectW
       console.log("user not found — creating new user");
 
       try {
-        const createdUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/user`, {id:userData.id, first_name: userData.first_name, last_name:userData.last_name, username: userData.username, userAvatarURL: userData.photo_url});
+        const createdUser = await axios.post(`${process.env.REACT_APP_API_URL}api/users/user`, {id: userData.id, first_name: userData.first_name, last_name:userData.last_name, username: userData.username, userAvatarURL: userData.photo_url});
         return createdUser.data;
       } catch (creationError) {
         console.error("Ошибка при создании пользователя:", creationError);

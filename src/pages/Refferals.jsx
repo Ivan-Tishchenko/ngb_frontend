@@ -85,7 +85,7 @@ const Refferals = () => {
           </div>
           {
             refferals.map(refferal => <div className='refferal' key={refferal.refferalUsername}>
-              <img href={refferal.refferalAvatar} alt="refferal avatar" />
+              <img src={refferal.refferalAvatar} alt="refferal avatar" />
               <span>{refferal.refferalName}</span>
               <span>{refferal.refferalUsername}</span>
               {refferal.isPremium ? <span>premium</span> : <span>standart</span>}
