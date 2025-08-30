@@ -58,7 +58,8 @@ const Bids = () => {
     } else {
       setTimeout(()=>dispatch(closeBid(currentBid)), endTime - Date.now() + 5);
     }
-  }, [currentBid, dispatch, endTime])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentBid])
 
   return (
     <section className='section bids_section'>
