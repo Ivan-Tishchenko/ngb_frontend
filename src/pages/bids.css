@@ -232,8 +232,35 @@
     flex-direction: row;
     align-items: center;
     position: relative;
-    justify-content:center;
+    justify-content: space-between;
 
     background-color: color-mix(in srgb, var(--standart-color) 30%, transparent);
 
+    padding: 15px;
+
+    overflow: hidden;
+}
+
+.win {
+    border-color: green;
+}
+
+.lose {
+    border-color: red;
+}
+
+.current_bid_procces_beckground {
+    position:absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
+}
+
+.win .current_bid_procces_beckground {
+    background-color: #00ff0088;
+}
+
+.lose .current_bid_procces_beckground {
+    background-color: #ff000088;
 }

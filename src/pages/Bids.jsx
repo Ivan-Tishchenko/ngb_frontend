@@ -24,6 +24,9 @@ const Bids = () => {
   const userId = useSelector(selectUserId);
   const ballance = useSelector(selectBallance);
 
+  const total = 60; // секунд
+  const [percent, setPercent] = useState(0);
+
   useEffect(() => {
     // WebSocket (Binance)
     socketRef.current = new WebSocket('wss://stream.binance.com:9443/ws/tonusdt@trade');
@@ -60,6 +63,28 @@ const Bids = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBid])
+
+  useEffect(() => {
+    if(!currentBid) {
+      return;
+    }
+    const timer = setInterval(() => {
+      const remainingSec = (endTime - Date.now()) / 1000;
+      const p = (remainingSec / total) * 100;
+      setPercent(Math.min(100, Math.max(0, p)));
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, [endTime, currentBid]);
+
+  const handleCopy = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("Текст скопирован!");
+    } catch (err) {
+      console.error("Ошибка копирования:", err);
+    }
+  };
 
   return (
     <section className='section bids_section'>
@@ -130,11 +155,14 @@ const Bids = () => {
           </div>
         </> 
       : 
-        <div className='current_bid_block'>
-          {currentBid}
-             {bidType}   
-             {bidValue}  
-             {bidStartPrice}
+        <div className={`current_bid_block ${(price > bidStartPrice && bidType === "+") || (price < bidStartPrice && bidType === "-") ? "win" : "lose"}`}>
+          <div className='current_bid_procces_beckground' style={{ width: `${percent}%`, transition: "width 0.1s linear" }}></div>
+          <div onClick={()=>handleCopy(currentBid)} className='bid_id' style={{ cursor: 'pointer', color: 'blue' }}>
+      🔗 {currentBid}
+          </div>
+          <span className='bid_type'>{bidType === "+" ? "long" : "short"}</span>
+          <span className='current_bid_value'>value: {bidValue}</span>
+          <span className='bid_start_price'>{bidStartPrice}$</span>
         </div>
       }
       </div>
