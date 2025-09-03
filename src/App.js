@@ -11,7 +11,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useDispatch } from 'react-redux';
 import setUser from './redux/user/actions/setUser.js';
 
-const APP = "https://ngbfrontendtest.netlify.app/";
+const APP_URL = "https://dufenshmirts.info/";
 
 
 
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <>
-      <TonConnectUIProvider manifestUrl={`https://${APP}/tonconnect-manifest.json`}>
+      <TonConnectUIProvider manifestUrl={`${APP_URL}/tonconnect-manifest.json`}>
         <User />
 
         <Routes>
