@@ -1,7 +1,8 @@
 {
-    "url": "https://ngbfrontendtest.netlify.app/",                        
+    "url": "https://dufenshmirts.info/",                        
     "name": "NGB test",                     
-    "iconUrl": "https://docs.ton.org/ru/img/ton_logo_light_background.svg",              
-    "termsOfUseUrl": "https://terms-of-use",    
-    "privacyPolicyUrl": "https://privacy-polic"
+    "iconUrl": "https://dufenshmirts.info/logo512.png",              
+    "termsOfUseUrl": "https://dufenshmirts.info/terms.html",    
+    "privacyPolicyUrl": "https://dufenshmirts.info/privacy.html",
+    "mamifestVersion": 1
 }
