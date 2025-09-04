@@ -1,7 +1,15 @@
+.ton_connect_block {
+    width: 205px;
+    height: 35px;
+    margin-right: 15px; 
+    box-sizing: border-box;
+    background-color: #00000000;
+    position: relative;
+}
+
 .ton_connect {
     width: 205px;
     height: 35px;
-    margin-right: 15px;
     box-sizing: border-box;
     border: solid 1px var(--standart-color);
     background-color: var(--secondary-color);
@@ -16,4 +24,18 @@
 
 .ton_connect img {
     margin-right: 5px;
+}
+
+.wallet_modal_button {
+    width: 205px;
+    height: 35px;
+    box-sizing: border-box;
+    border: solid 1px var(--standart-color);
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

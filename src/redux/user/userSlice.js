@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import setUser from "./actions/setUser.js";
 import openBid_user from "./actions/openBid.js";
 import closeBid_user from "./actions/closeBid.js";
+import connectWallet from "./actions/connectWallet.js";
 
 const initialState = {
     userAvatarURL: null,
@@ -71,6 +72,19 @@ export const userSlice = createSlice({
 
         })
         .addCase(closeBid_user.rejected, (state,action) => {
+            state.loading = false;
+            state.error = action.error.message ?? 'Ошибка при загрузке данных';
+        })
+        .addCase(connectWallet.pending, (state,action) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(connectWallet.fulfilled, (state,action) => {
+            state.wallet = action.payload.wallet;
+            state.loading = false
+
+        })
+        .addCase(connectWallet.rejected, (state,action) => {
             state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
