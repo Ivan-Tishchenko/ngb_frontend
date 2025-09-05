@@ -240,6 +240,11 @@
     overflow: hidden;
 }
 
+.current_bid_block span,
+.current_bid_block div {
+    z-index: 1;
+}
+
 .win {
     border-color: green;
 }
@@ -252,7 +257,7 @@
     position:absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 0;
     height: 100%;
 }
 
