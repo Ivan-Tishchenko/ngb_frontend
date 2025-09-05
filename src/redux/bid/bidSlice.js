@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import openBid from "./actions/openBid.js";
 import closeBid from "./actions/closeBid.js";
+import getBidData from "./actions/getBidData.js";
 
 const initialState = {
         bidId: null,
@@ -59,6 +60,27 @@ export const bidSlice = createSlice({
 
         })
         .addCase(closeBid.rejected, (state,action) => {
+            state.loading = false;
+            state.error = action.error.message ?? 'Ошибка при загрузке данных';
+        })
+        .addCase(getBidData.pending, (state, action) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getBidData.fulfilled, (state, action) => {
+            const {bidId, type, value, openedTime, startPrice, endTime, result, stopPrice, profit} = action.payload;
+            state.bidId = bidId;
+            state.type = type;
+            state.value = value;
+            state.openedTime = openedTime;
+            state.startPrice = startPrice;
+            state.endTime = endTime;
+            state.result = result;
+            state.stopPrice = stopPrice;
+            state.profit = profit;
+            state.loading = false;
+        })
+        .addCase(getBidData.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })

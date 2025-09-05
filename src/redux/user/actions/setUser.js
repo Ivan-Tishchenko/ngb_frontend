@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import getBidData from 'redux/bid/actions/getBidData';
 
 
 
-const setUser = createAsyncThunk("user/setUserState", async (userData, { rejectWithValue }) => {
+const setUser = createAsyncThunk("user/setUserState", async (userData, { rejectWithValue, dispatch }) => {
   try {
 
     const checkUser = await axios.get(`${process.env.REACT_APP_API_URL}api/users/user`, {
@@ -13,6 +14,10 @@ const setUser = createAsyncThunk("user/setUserState", async (userData, { rejectW
         // Authorization: `Bearer ${userData.token}` // если нужен токен
       },
     });
+
+    if(checkUser.data.currentBid){
+      dispatch(getBidData(checkUser.data.currentBid))
+    }
 
     return checkUser.data;
 
