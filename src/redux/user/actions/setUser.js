@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import getBidData from 'redux/bid/actions/getBidData';
+import getBidData from '../../bid/actions/getBidData.js';
 
 
 
