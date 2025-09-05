@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import User from 'blocks/User';
 import './App.css';
 import Nav from 'blocks/Nav';
@@ -11,12 +11,31 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useDispatch } from 'react-redux';
 import setUser from './redux/user/actions/setUser.js';
 
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+
 const APP_URL = "https://dufenshmirts.info/";
 
 
 
 function App() {
   const dispatch = useDispatch();
+
+  const [ init, setInit ] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+        // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+        // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+        // starting from v2 you can add only the features you need reducing the bundle size
+        //await loadAll(engine);
+        //await loadFull(engine);
+        await loadSlim(engine);
+        //await loadBasic(engine);
+    }).then(() => {
+        setInit(true);
+    });
+  }, []);
 
   useEffect(() => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -37,8 +56,79 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const particlesLoaded = (container) => {
+        console.log(container);
+    };
+
   return (
     <>
+    { init && <Particles
+            id="tsparticles"
+            particlesLoaded={particlesLoaded}
+            options={{
+                background: {
+                    color: {
+                        value: "#00000000",
+                    },
+                },
+                fpsLimit: 120,
+                interactivity: {
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: "push",
+                        },
+                        onHover: {
+                            enable: true,
+                            mode: "repulse",
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        push: {
+                            quantity: 2,
+                        },
+                        repulse: {
+                            distance: 80,
+                            duration: 1,
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: "#fdf170a7",
+                    },
+                    move: {
+                        direction: "top",
+                        enable: true,
+                        outModes: {
+                            default: "out",
+                        },
+                        random: false,
+                        speed: 1,
+                        straight: false,
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800,
+                        },
+                        value: 700,
+                    },
+                    opacity: {
+                        value: 0.5,
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        value: { min: 1, max: 4 },
+                    },
+                },
+                detectRetina: true,
+            }}
+        />
+    }
       <TonConnectUIProvider manifestUrl={`${APP_URL}/tonconnect-manifest.json`}>
         <User />
 
