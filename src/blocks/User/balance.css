@@ -12,7 +12,7 @@
     border: 2px solid var(--standart-color);
     border-radius: 30px;
 
-    background-color: var(--secondary-color);
+    background-color: color-mix(in srgb, var(--standart-color) 30%, transparent);;
 }
 
 .dividing-line {
