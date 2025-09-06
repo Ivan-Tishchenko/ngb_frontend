@@ -10,24 +10,23 @@
 
 .loader {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 25dvw;
-  height: 25dvw;
-  transform: translate(-50%);
-  
+  bottom: 50%;
+  left: 50%;
+  width: 50dvw;
+  height: 50dvw;
+  transform: translate(-50%, 50%) scale(1)
 }
 
 .loader_circle {
-    width: 25dvw;
-    height: 25dvw;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     background-color: #DE5C03;
     filter: blur(5dvw);
 }
 
 .loader.entering {
-  animation: spiralToCenter 3.5s linear forwards;
+  animation: spiralToCenter 5s linear forwards;
 }
 
 .loader.spinning .spinner {
@@ -40,53 +39,67 @@
 
 @keyframes spiralToCenter {
   0% {
-    transform: translate(0, 0) scale(1.1);
-    opacity: 1;
+    transform: translate(-50%, 50%) translate(-50dvw, 50dvh) scale(0.3);
   }
   5% {
-    transform: translate(10dvw, -10dvh) scale(1.4);
+    transform: translate(-50%, 50%) translate(-20.5dvw, 47.5dvh) scale(0.4);
   }
   10% {
-    transform: translate(25dvw, -15dvh) scale(2);
+    transform: translate(-50%, 50%) translate(-1.6dvw, 43.75dvh) scale(0.5);
   }
   15% {
-    transform: translate(45dvw, -25dvh) scale(2.5);
+    transform: translate(-50%, 50%) translate(16.4dvw, 38.125dvh) scale(0.6);
   }
   20% {
-    transform: translate(75dvw, -50dvh) scale(2.8);
+    transform: translate(-50%, 50%) translate(28dvw, 29dvh) scale(0.7);
   }
   25% {
-    transform: translate(80dvw, -60dvh) scale(3.5);
+    transform: translate(-50%, 50%) translate(36.8dvw, 18dvh) scale(0.9);
   }
   30% {
-    transform: translate(75dvw, -70dvh) scale(3);
+    transform: translate(-50%, 50%) translate(37dvw, 4.25dvh) scale(1.2);
+  }
+  35% {
+    transform: translate(-50%, 50%) translate(41dvw, 4.25dvh) scale(1.5);
   }
   40% {
-    transform: translate(45dvw, -80dvh) scale(2.8);
+    transform: translate(-50%, 50%) translate(36.4dvw, -20.75dvh) scale(1.9);
+  }
+  45% {
+    transform: translate(-50%, 50%) translate(29.2dvw, -29.75dvh) scale(2.2);
   }
   50% {
-    transform: translate(33dvw, -95dvh) scale(2.5);
+    transform: translate(-50%, 50%) translate(20.8dvw, -36dvh) scale(2.5);
+  }
+  55% {
+    transform: translate(-50%, 50%) translate(10.4dvw, -39.5dvh) scale(2);
   }
   60% {
-    transform: translate(15dvw, -85dvh) scale(2.4);
+    transform: translate(-50%, 50%) translate(-4.2dvw, -41.625dvh) scale(1.7);
+  }
+  65% {
+    transform: translate(-50%, 50%) translate(-20.2dvw, -40.125dvh) scale(1.2);
   }
   70% {
-    transform: translate(5dvw, -75dvh) scale(2.2);
+    transform: translate(-50%, 50%) translate(-31.6dvw, -34.75dvh) scale(0.7);
+  }
+  75% {
+    transform: translate(-50%, 50%) translate(-38.4dvw, -26.25dvh) scale(0.4);
   }
   80% {
-    transform: translate(17dvw, -65dvh) scale(2.2);
+    transform: translate(-50%, 50%) translate(-38.4dvw, -15.5dvh) scale(0.6);
+  }
+  85% {
+    transform: translate(-50%, 50%) translate(-28.8dvw, -5.875dvh) scale(0.8);
   }
   90% {
-    transform: translate(32dvw, -55dvh) scale(2.1);
+    transform: translate(-50%, 50%) translate(-13dvw, -1.5dvh) scale(0.9);
   }
   95% {
-    transform: translate(45dvw, -45dvh) scale(2.1);
-  }
-  98% {
-    transform: translate(50dvw, -50dvh) scale(2);
+    transform: translate(-50%, 50%) translate(0dvw, 0dvh) scale(1);
   }
   100% {
-    transform: translate(50dvw, -50dvh) scale(2);
+    transform: translate(-50%, 50%) translate(0dvw, 0dvh) scale(1);
   }
 }
 
