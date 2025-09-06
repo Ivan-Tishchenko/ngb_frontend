@@ -10,3 +10,5 @@ export const selectTickets = (state) => state.user.tickets;
 export const selectCurrentBid = (state) => state.user.currentBid;
 export const selectSignedAt = (state) => state.user.signedAt;
 export const selectReffCode = (state) => state.user.reffCode;
+export const selectLoading = (state) => state.user.loading;
+export const selectLoadingBid = (state) => state.user.loading_bid;

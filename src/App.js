@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import Mine from 'pages/Mine';
 import Quests from 'pages/Quests';
 import Refferals from 'pages/Refferals';
+import Lodaer from 'pages/animations/Lodaer';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useDispatch } from 'react-redux';
 import setUser from './redux/user/actions/setUser.js';
@@ -131,6 +132,8 @@ function App() {
     }
       <TonConnectUIProvider manifestUrl={`${APP_URL}/tonconnect-manifest.json`}>
         <User />
+
+        <Lodaer />
 
         <Routes>
           <Route path="/bids" element={<Bids /> }/>

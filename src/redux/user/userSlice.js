@@ -48,44 +48,41 @@ export const userSlice = createSlice({
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
         .addCase(openBid_user.pending, (state, action) => {
-            state.loading = true;
+            state.loading_bid = true;
             state.error = null;
         })
         .addCase(openBid_user.fulfilled, (state, action) => {
             state.ballance = action.payload.ballance;
             state.currentBid = action.payload.currentBid || "problem";
-            state.loading = false;
+            state.loading_bid = false;
         })
         .addCase(openBid_user.rejected, (state, action) => {
-            state.loading = false;
+            state.loading_bid = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
         .addCase(closeBid_user.pending, (state,action) => {
-            state.loading = true;
+            state.loading_bid = true;
             state.error = null;
         })
         .addCase(closeBid_user.fulfilled, (state,action) => {
             state.ballance = action.payload.ballance;
             state.xp = action.payload.xp;
             state.currentBid = null;
-            state.loading = false
+            state.loading_bid = false
 
         })
         .addCase(closeBid_user.rejected, (state,action) => {
-            state.loading = false;
+            state.loading_bid = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
         .addCase(connectWallet.pending, (state,action) => {
-            state.loading = true;
             state.error = null;
         })
         .addCase(connectWallet.fulfilled, (state,action) => {
             state.wallet = action.payload.wallet;
-            state.loading = false
 
         })
         .addCase(connectWallet.rejected, (state,action) => {
-            state.loading = false;
             state.error = action.error.message ?? 'Ошибка при загрузке данных';
         })
     }

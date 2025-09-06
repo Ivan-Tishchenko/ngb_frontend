@@ -1,0 +1,109 @@
+.loader_backdrop {
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 999;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.loader {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 25dvw;
+  height: 25dvw;
+  transform: translate(-50%);
+  
+}
+
+.loader_circle {
+    width: 25dvw;
+    height: 25dvw;
+    border-radius: 50%;
+    background-color: #DE5C03;
+    filter: blur(5dvw);
+}
+
+.loader.entering {
+  animation: spiralToCenter 3.5s linear forwards;
+}
+
+.loader.spinning .spinner {
+  animation: rotate 1s linear infinite;
+}
+
+.loader.exiting {
+  animation: fadeOut 0.5s ease-in forwards;
+}
+
+@keyframes spiralToCenter {
+  0% {
+    transform: translate(0, 0) scale(1.1);
+    opacity: 1;
+  }
+  5% {
+    transform: translate(10dvw, -10dvh) scale(1.4);
+  }
+  10% {
+    transform: translate(25dvw, -15dvh) scale(2);
+  }
+  15% {
+    transform: translate(45dvw, -25dvh) scale(2.5);
+  }
+  20% {
+    transform: translate(75dvw, -50dvh) scale(2.8);
+  }
+  25% {
+    transform: translate(80dvw, -60dvh) scale(3.5);
+  }
+  30% {
+    transform: translate(75dvw, -70dvh) scale(3);
+  }
+  40% {
+    transform: translate(45dvw, -80dvh) scale(2.8);
+  }
+  50% {
+    transform: translate(33dvw, -95dvh) scale(2.5);
+  }
+  60% {
+    transform: translate(15dvw, -85dvh) scale(2.4);
+  }
+  70% {
+    transform: translate(5dvw, -75dvh) scale(2.2);
+  }
+  80% {
+    transform: translate(17dvw, -65dvh) scale(2.2);
+  }
+  90% {
+    transform: translate(32dvw, -55dvh) scale(2.1);
+  }
+  95% {
+    transform: translate(45dvw, -45dvh) scale(2.1);
+  }
+  98% {
+    transform: translate(50dvw, -50dvh) scale(2);
+  }
+  100% {
+    transform: translate(50dvw, -50dvh) scale(2);
+  }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.loader_logo {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 7dvw;
+}
