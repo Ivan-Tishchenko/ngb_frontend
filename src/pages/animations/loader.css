@@ -26,11 +26,11 @@
 }
 
 .loader.entering {
-  animation: spiralToCenter 5s linear forwards;
+  animation: spiralToCenter 3s linear forwards;
 }
 
 .loader.spinning .spinner {
-  animation: rotate 1s linear infinite;
+  animation: rotate 1.5s linear infinite;
 }
 
 .loader.exiting {
@@ -104,8 +104,11 @@
 }
 
 @keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg) translate(-50%, -50%) scale(1); }
+  25% { transform: rotate(-25deg) translate(-50%, -50%) scale(1.3); }
+  50% { transform: rotate(0deg) translate(-50%, -50%) scale(1); }
+  75% { transform: rotate(25deg) translate(-50%, -50%) scale(1.3); }
+  100% { transform: rotate(0deg) translate(-50%, -50%) scale(1); }
 }
 
 @keyframes fadeOut {
@@ -118,5 +121,5 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 7dvw;
+    width: 15dvw;
 }
