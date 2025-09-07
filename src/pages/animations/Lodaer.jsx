@@ -1,19 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
-import { selectLoading, selectLoadingBid } from '../../redux/user/userSelectors.js';
+import { selectLoading } from '../../redux/user/userSelectors.js';
 import {ReactComponent as Gamepade} from '../../img/gamepad.svg';
 
 import './loader.css';
 
 const Lodaer = () => {
   const loading = useSelector(selectLoading);
-  const loadingBid = useSelector(selectLoadingBid);
 
   const [phase, setPhase] = useState('hidden'); // 'entering', 'spinning', 'exiting'
 
   useEffect(() => {
     if (loading && phase === 'hidden') {
       setPhase('entering');
+    } else if(!loading && phase === "spinning") {
+      setPhase("exiting");
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
@@ -41,10 +42,6 @@ const Lodaer = () => {
             <div className='loader_circle' ></div>
             <Gamepade className={`${phase === 'spinning' ? 'spinner' : ''} loader_logo`} />
           </div>
-        </div>
-    }
-    {loadingBid &&
-        <div className='loading_bid'>
         </div>
     }
     </>

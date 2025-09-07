@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import GEMicon from "../img/DIAMOND.png";
 import "./bids.css";
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,11 +6,10 @@ import { selectBallance, selectCurrentBid, selectUserId } from '../redux/user/us
 import openBid from '../redux/bid/actions/openBid.js';
 import closeBid from '../redux/bid/actions/closeBid.js';
 import { selectBidEndTime, selectBidStartPrice, selectBidType, selectBidValue } from '../redux/bid/bidSelectors.js';
+import BidResult from './animations/BidResult';
 
-const Bids = () => {
+const Bids = ({price}) => {
   const dispatch = useDispatch();
-  const socketRef = useRef(null);
-  const [price, setPrice] = useState(null);
 
   const [info, setInfo] = useState(false);
   const [count, setCount] = useState(0)
@@ -27,39 +26,30 @@ const Bids = () => {
   const total = 60; // секунд
   const [percent, setPercent] = useState(0);
 
-  useEffect(() => {
-    // WebSocket (Binance)
-    socketRef.current = new WebSocket('wss://stream.binance.com:9443/ws/tonusdt@trade');
-
-    socketRef.current.onopen = () => {
-      console.log('WebSocket connected');
-    };
-
-    socketRef.current.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setPrice(data.p); 
-    };
-
-    socketRef.current.onerror = (error) => {
-      console.error('error WebSocket:', error);
-    };
-
-    socketRef.current.onclose = () => {
-      console.log('WebSocket disconnected');
-    };
-
-    return () => {
-      socketRef.current.close();
-    };
-  }, []);
+  const [result, setResult] = useState(null);
+  const [profit, setProfit] = useState(null);
   
   useEffect(() => {
     if(!currentBid){
       return;
     } else if(endTime - Date.now() <= 0) {
+      setResult(((bidType === "+") && (bidStartPrice > price)) || ((bidType === "-") && (bidStartPrice < price)) ? "win" : "lose");
+      setProfit(result === "win" ? `+${bidValue * 2}` : `-${bidValue}`);
       dispatch(closeBid(currentBid));
+      setTimeout(() => {
+        setResult(null);
+        setProfit(null);
+      }, 3000)
     } else {
-      setTimeout(()=>dispatch(closeBid(currentBid)), endTime - Date.now() + 5);
+      setTimeout(()=> {
+        setResult(((bidType === "+") && (bidStartPrice > price)) || ((bidType === "-") && (bidStartPrice < price)) ? "win" : "lose");
+        setProfit(result === "win" ? `+${bidValue * 2}` : `-${bidValue}`);
+        dispatch(closeBid(currentBid));
+        setTimeout(() => {
+          setResult(null);
+          setProfit(null);
+        }, 3000)
+      }, endTime - Date.now() + 5);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBid])
@@ -86,7 +76,8 @@ const Bids = () => {
     }
   };
 
-  return (
+  return (<>
+    {result && <BidResult result={result} profit={profit} />}
     <section className='section bids_section'>
 
       {info &&
@@ -113,14 +104,14 @@ const Bids = () => {
         <>
           <div className='bids_open'>
             <button className='bid bid_up' onClick={()=> {
-              if(count === 0) {
+              if(count < 0.5) {
                 return;
               }
               dispatch(openBid({value: count, type: "+", userId}));
               setCount(0);
             }}><span className='bid_symbol'>{"<"}</span>  up</button>
             <button className='bid bid_down' onClick={()=> {
-              if(count === 0) {
+              if(count < 0.5) {
                 return;
               }
               dispatch(openBid({value: count, type: "-", userId}));
@@ -167,6 +158,7 @@ const Bids = () => {
       }
       </div>
     </section>
+    </>
   )
 }
 

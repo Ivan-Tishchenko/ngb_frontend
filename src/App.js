@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import User from 'blocks/User';
 import './App.css';
 import Nav from 'blocks/Nav';
@@ -21,6 +21,34 @@ const APP_URL = "https://dufenshmirts.info/";
 
 function App() {
   const dispatch = useDispatch();
+  const socketRef = useRef(null);
+  const [price, setPrice] = useState(null);
+
+  useEffect(() => {
+    // WebSocket (Binance)
+    socketRef.current = new WebSocket('wss://stream.binance.com:9443/ws/tonusdt@trade');
+
+    socketRef.current.onopen = () => {
+      console.log('WebSocket connected');
+    };
+
+    socketRef.current.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setPrice(data.p); 
+    };
+
+    socketRef.current.onerror = (error) => {
+      console.error('error WebSocket:', error);
+    };
+
+    socketRef.current.onclose = () => {
+      console.log('WebSocket disconnected');
+    };
+
+    return () => {
+      socketRef.current.close();
+    };
+  }, []);
 
   const [ init, setInit ] = useState(false);
 
@@ -136,7 +164,7 @@ function App() {
         <Lodaer />
 
         <Routes>
-          <Route path="/bids" element={<Bids /> }/>
+          <Route path="/bids" element={<Bids price={price} /> }/>
           <Route path="/mine" element={<Mine /> }/>
           <Route path="/quests" element={<Quests /> }/>
           <Route path="/reff" element={<Refferals /> }/>

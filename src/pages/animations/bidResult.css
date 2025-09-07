@@ -1,0 +1,44 @@
+.bid_result_background {
+    position: absolute;
+    top: 50dvh;
+    left: 50dvw;
+    width: 65dvw;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    filter: blur(8dvw);
+    height: 65dvw;
+    z-index: 99;
+}
+
+.bid_result_background.win {
+    color: white;
+    background-color: #27c2046a;
+}
+
+.bid_result_background.lose {
+    color: white;
+    background-color: #ec000056;
+}
+
+.bid_result {
+    
+    font-size: 15vw;
+    font-weight: 700;
+}
+
+.bid_profit {
+    font-size: 8dvw;
+}
+
+.result_block {
+    position: absolute;
+    top: 50dvh;
+    left: 50dvw;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
